@@ -2,7 +2,7 @@ name: Doc Previews Cleanup
 
 on:
   schedule:
-    - cron: "30 5 * * 1"
+    - cron: "30 5 15 * *"
   workflow_dispatch:
     inputs:
       lookback:
