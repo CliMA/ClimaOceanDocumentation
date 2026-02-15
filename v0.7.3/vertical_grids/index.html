@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Vertical grids · ClimaOcean.jl</title><meta name="title" content="Vertical grids · ClimaOcean.jl"/><meta property="og:title" content="Vertical grids · ClimaOcean.jl"/><meta property="twitter:title" content="Vertical grids · ClimaOcean.jl"/><meta name="description" content="Documentation for ClimaOcean.jl."/><meta property="og:description" content="Documentation for ClimaOcean.jl."/><meta property="twitter:description" content="Documentation for ClimaOcean.jl."/><meta property="og:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/vertical_grids/"/><meta property="twitter:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/vertical_grids/"/><link rel="canonical" href="https://clima.github.io/ClimaOceanDocumentation/dev/vertical_grids/"/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">ClimaOcean.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../literated/single_column_os_papa_simulation/">Single-column ocean simulation</a></li><li><a class="tocitem" href="../literated/one_degree_simulation/">One-degree ocean–sea ice simulation</a></li><li><a class="tocitem" href="../literated/near_global_ocean_simulation/">Near-global ocean simulation</a></li></ul></li><li class="is-active"><a class="tocitem" href>Vertical grids</a></li><li><a class="tocitem" href="../interface_fluxes/">Interface fluxes</a></li><li><span class="tocitem">Library</span><ul><li><a class="tocitem" href="../library/outline/">Contents</a></li><li><a class="tocitem" href="../library/public/">Public</a></li><li><a class="tocitem" href="../library/internals/">Private</a></li><li><a class="tocitem" href="../library/function_index/">Function index</a></li></ul></li><li><a class="tocitem" href="../references/">References</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Vertical grids</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Vertical grids</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl/blob/main/docs/src/vertical_grids.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Vertical-grids"><a class="docs-heading-anchor" href="#Vertical-grids">Vertical grids</a><a id="Vertical-grids-1"></a><a class="docs-heading-anchor-permalink" href="#Vertical-grids" title="Permalink"></a></h1><p>A few vertical grids are implemented within the <a href="../library/public/#ClimaOcean.GridUtils">Grid Utilities</a> module.</p><h3 id="Exponential-spacing"><a class="docs-heading-anchor" href="#Exponential-spacing">Exponential spacing</a><a id="Exponential-spacing-1"></a><a class="docs-heading-anchor-permalink" href="#Exponential-spacing" title="Permalink"></a></h3><p>The <a href="../library/public/#ClimaOcean.GridUtils.ExponentialCoordinate"><code>ExponentialCoordinate</code></a> method returns a coordinate with interfaces that lie on an exponential profile. By that, we mean that a uniformly discretized domain in the range <span>$[a, b]$</span> is mapped back onto itself via either</p><p class="math-container">\[z \mapsto w(z) = b - (b - a) \frac{\exp{[(b - z) / h]} - 1}{\exp{[(b - a) / h]} - 1} \quad \text{(right biased)}\]</p><p>or</p><p class="math-container">\[z \mapsto w(z) = a + (b - a) \frac{\exp{[(z - a) / h]} - 1}{\exp{[(b - a) / h]} - 1} \quad \text{(left biased)}\]</p><p>The exponential mappings above have an e-folding controlled by scale <span>$h$</span>. It worths noting that the exponential maps imply that the cell widths (distances between interfaces) grow linearly at a rate inversely proportional to <span>$h / (b - a)$</span>.</p><p>The right-biased map biases the interfaces being closer towards <span>$b$</span>; the left-biased map biases the interfaces towards <span>$a$</span>.</p><p>At the limit <span>$h / (b - a) \to \infty$</span> both mappings reduce to identity (<span>$w \to z$</span>) and thus the grid becomes uniformly spaced.</p><div class="admonition is-info" id="Oceanography-related-bias-9bba6d351d77cbd5"><header class="admonition-header">Oceanography-related bias<a class="admonition-anchor" href="#Oceanography-related-bias-9bba6d351d77cbd5" title="Permalink"></a></header><div class="admonition-body"><p>For oceanographic purposes, the right-biased exponential mapping is usually more relevant as it implies finer vertical resolution closer to the ocean&#39;s surface.</p></div></div><pre><code class="language-julia hljs">using ClimaOcean
+using ClimaOcean.GridUtils: rightbiased_exponential_mapping, leftbiased_exponential_mapping
+
+using CairoMakie
+
+depth = 1000
+
+zb = - depth  # left
+zt = 0        # right
+z  = range(zb, stop=zt, length=501)
+zp = range(zb, stop=zt, length=6)   # coarser for plotting
+
+axis_labels = (xlabel=&quot;uniform coordinate z / (b-a)&quot;,
+               ylabel=&quot;mapped coordinate w / (b-a)&quot;)
+
+fig = Figure(size=(800, 350))
+axl = Axis(fig[1, 1]; title=&quot;left-biased map&quot;, axis_labels...)
+axr = Axis(fig[1, 2]; title=&quot;right-biased map&quot;, axis_labels...)
+
+for scale in [depth/20, depth/5, depth/2, 1e12*depth]
+    label = &quot;h / (b-a) = $(scale / depth)&quot;
+    lines!(axl, z / depth, leftbiased_exponential_mapping.(z, zb, zt, scale) / depth; label)
+    scatter!(axl, zp / depth, leftbiased_exponential_mapping.(zp, zb, zt, scale) / depth)
+
+    lines!(axr, z / depth, rightbiased_exponential_mapping.(z, zb, zt, scale) / depth; label)
+    scatter!(axr, zp / depth, rightbiased_exponential_mapping.(zp, zb, zt, scale) / depth)
+end
+
+Legend(fig[2, :], axl, orientation = :horizontal)
+
+fig</code></pre><img src="8b75c423.svg" alt="Example block output"/><p>Note that the smallest the ratio <span>$h / (b-a)$</span> is, the more finely-packed are the mapped points towards the left or right side of the domain.</p><p>Let&#39;s see to use <a href="../library/public/#ClimaOcean.GridUtils.ExponentialCoordinate"><code>ExponentialCoordinate</code></a> works. Here we construct a vertical grid with 10 cells that goes down to 1000 meters depth.</p><pre><code class="language-julia hljs">using ClimaOcean
+
+Nz = 10
+depth = 1000
+left = zb = -depth
+right = 0
+
+z = ExponentialCoordinate(Nz, left, right)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">(::ExponentialCoordinate) (generic function with 1 method)</code></pre><p>By default, the oceanographically-relevant right-biased map was used. Also note above, that the default e-folding scale (<code>scale = (right - left) / 5</code>) was used. If we don&#39;t prescribe a value for <code>right</code> then its default oceanographically-appropriate value of 0 is used.</p><p>We can inspect the interfaces of the coordinate via</p><pre><code class="language-julia hljs">[z(k) for k in 1:Nz+1]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">11-element Vector{Float64}:
+ -1000.0
+  -603.8614994919127
+  -363.5913534411692
+  -217.86014324776093
+  -129.46969618843258
+   -75.85818002124356
+   -43.34115175216388
+   -23.61857714422463
+   -11.656230956039607
+    -4.40070123080884
+     0.0</code></pre><p>To demonstrate how the scale <span>$h$</span> affects the coordinate, we construct below two such exponential coordinates: the first with <span>$h / (b - a) = 1/5$</span> and the second with <span>$h / (b - a) = 1/2$</span>.</p><pre><code class="language-julia hljs">using ClimaOcean
+using Oceananigans
+
+Nz = 10
+depth = 1000
+
+
+using CairoMakie
+
+fig = Figure()
+
+scale = depth / 5
+z = ExponentialCoordinate(Nz, -depth; scale)
+grid = RectilinearGrid(; size=Nz, z, topology=(Flat, Flat, Bounded))
+zf = znodes(grid, Face())
+zc = znodes(grid, Center())
+Δz = zspacings(grid, Center())[1, 1, 1:Nz]
+
+
+axΔz1 = Axis(fig[1, 1]; xlabel = &quot;z-spacing (m)&quot;, ylabel = &quot;z (m)&quot;, title = &quot;scale = depth / 5&quot;)
+axz1 = Axis(fig[1, 2])
+linkaxes!(axΔz1, axz1)
+
+lΔz = lines!(axΔz1, - zf * (depth/scale) / Nz, zf, color=(:purple, 0.3))
+scatter!(axΔz1, Δz, zc)
+hidespines!(axΔz1, :t, :r)
+
+lines!(axz1, [0, 0], [-depth, 0], color=:gray)
+scatter!(axz1, 0 * zf, zf, marker=:hline, color=:gray, markersize=20)
+scatter!(axz1, 0 * zc, zc)
+hidedecorations!(axz1)
+hidespines!(axz1)
+
+
+scale = depth / 2
+z = ExponentialCoordinate(Nz, -depth; scale)
+grid = RectilinearGrid(; size=Nz, z, topology=(Flat, Flat, Bounded))
+zf = znodes(grid, Face())
+zc = znodes(grid, Center())
+Δz = zspacings(grid, Center())[1, 1, 1:Nz]
+
+axΔz2 = Axis(fig[1, 3]; xlabel = &quot;z-spacing (m)&quot;, ylabel = &quot;z (m)&quot;, title = &quot;scale = depth / 2&quot;)
+axz2 = Axis(fig[1, 4])
+linkaxes!(axΔz2, axz2)
+
+lΔz = lines!(axΔz2, - zf * (depth/scale) / Nz, zf, color=(:purple, 0.3))
+scatter!(axΔz2, Δz, zc)
+hidespines!(axΔz2, :t, :r)
+
+lines!(axz2, [0, 0], [-depth, 0], color=:gray)
+scatter!(axz2, 0 * zf, zf, marker=:hline, color=:gray, markersize=20)
+scatter!(axz2, 0 * zc, zc)
+hidedecorations!(axz2)
+hidespines!(axz2)
+
+
+colsize!(fig.layout, 2, Relative(0.1))
+colsize!(fig.layout, 4, Relative(0.1))
+
+legend = Legend(fig[2, :], [lΔz], [&quot;slope = (depth / scale) / Nz&quot;], orientation = :horizontal)
+
+fig</code></pre><img src="cdffeeeb.svg" alt="Example block output"/><p>For both grids, the spacings grow linearly with depth and sum up to the total depth. But with the larger <span>$h / L$</span> is, the smaller the rate is that the spacings increase with depth.</p><p>A ridiculously large value of <span>$h / L$</span> (approximating infinity) gives a uniform grid:</p><pre><code class="language-julia hljs">z = ExponentialCoordinate(Nz, depth, scale = 1e12*depth)
+[z(k) for k in 1:Nz+1]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">11-element Vector{Float64}:
+ 1000.0
+  900.000000000045
+  800.00000000008
+  700.0000000001052
+  600.00000000012
+  500.00000000012506
+  400.00000000012
+  300.00000000010505
+  200.00000000008004
+  100.000000000045
+    0.0</code></pre><p>A downside of <a href="../library/public/#ClimaOcean.GridUtils.ExponentialCoordinate"><code>ExponentialCoordinate</code></a> is that we don&#39;t have tight control on the minimum spacing at the surface. To prescribe the surface spacing we need to play around with the scale <span>$h$</span> and the number of vertical cells <span>$N_z$</span>.</p><h3 id="Stretched-z-faces"><a class="docs-heading-anchor" href="#Stretched-z-faces">Stretched <span>$z$</span> faces</a><a id="Stretched-z-faces-1"></a><a class="docs-heading-anchor-permalink" href="#Stretched-z-faces" title="Permalink"></a></h3><p>The <a href="../library/public/#ClimaOcean.GridUtils.StretchedCoordinate-Tuple{}"><code>StretchedCoordinate</code></a> method allows a tighter control on the vertical spacing at the surface. That is, we can prescribe a constant spacing over the top <code>surface_layer_height</code>  below which the grid spacing increases following a prescribed stretching law. The downside here is that neither the final grid depth nor the total number of vertical cells can be prescribed. The final depth we get is greater or equal from what we prescribe via the keyword argument <code>depth</code>. Also, the total number of cells we end up with depends on the stretching law.</p><p>The three grids below have constant 20-meter spacing for the top 120 meters. We prescribe to all three a <code>depth = 750</code> meters and we apply power-law stretching for depths below 120 meters. The bigger the power-law stretching factor is, the further the last interface goes beyond the prescribed depth and/or with less total number of cells.</p><pre><code class="language-julia hljs">depth = 750
+surface_layer_Δz = 20
+surface_layer_height = 120
+
+z = StretchedCoordinate(; depth,
+                        surface_layer_Δz,
+                        surface_layer_height,
+                        stretching = PowerLawStretching(1.08))
+grid = RectilinearGrid(; size=length(z), z, topology=(Flat, Flat, Bounded))
+zf = znodes(grid, Face())
+zc = znodes(grid, Center())
+Δz = zspacings(grid, Center())
+Δz = view(Δz, 1, 1, :)  # for plotting
+
+fig = Figure(size=(800, 550))
+
+axΔz1 = Axis(fig[1, 1];
+             xlabel = &quot;z-spacing (m)&quot;,
+             ylabel = &quot;z (m)&quot;,
+             title = &quot;PowerLawStretching(1.09)\n $(length(zf)-1) cells\n bottom interface at z = $(zf[1]) m\n &quot;)
+
+axz1 = Axis(fig[1, 2])
+
+ldepth = hlines!(axΔz1, -depth, color = :salmon, linestyle=:dash)
+lzbottom = hlines!(axΔz1, zf[1], color = :grey)
+scatter!(axΔz1, Δz, zc)
+hidespines!(axΔz1, :t, :r)
+
+lines!(axz1, [0, 0], [zf[1], 0], color=:gray)
+scatter!(axz1, 0 * zf, zf, marker=:hline, color=:gray, markersize=20)
+scatter!(axz1, 0 * zc, zc)
+hidedecorations!(axz1)
+hidespines!(axz1)
+
+
+z = StretchedCoordinate(; depth,
+                        surface_layer_Δz,
+                        surface_layer_height,
+                        stretching = PowerLawStretching(1.04))
+grid = RectilinearGrid(; size=length(z), z, topology=(Flat, Flat, Bounded))
+zf = znodes(grid, Face())
+zc = znodes(grid, Center())
+Δz = zspacings(grid, Center())
+Δz = view(Δz, 1, 1, :)  # for plotting
+
+axΔz2 = Axis(fig[1, 3];
+             xlabel = &quot;z-spacing (m)&quot;,
+             ylabel = &quot;z (m)&quot;,
+             title = &quot;PowerLawStretching(1.04)\n $(length(zf)-1) cells\n bottom interface at z = $(zf[1]) m\n &quot;)
+axz2 = Axis(fig[1, 4])
+
+ldepth = hlines!(axΔz2, -depth, color = :salmon, linestyle=:dash)
+lzbottom = hlines!(axΔz2, zf[1], color = :grey)
+scatter!(axΔz2, Δz, zc)
+hidespines!(axΔz2, :t, :r)
+
+lines!(axz2, [0, 0], [zf[1], 0], color=:gray)
+scatter!(axz2, 0 * zf, zf, marker=:hline, color=:gray, markersize=20)
+scatter!(axz2, 0 * zc, zc)
+hidedecorations!(axz2)
+hidespines!(axz2)
+
+
+z = StretchedCoordinate(; depth,
+                        surface_layer_Δz,
+                        surface_layer_height,
+                        stretching = PowerLawStretching(1.04),
+                        constant_bottom_spacing_depth = 500)
+grid = RectilinearGrid(; size=length(z), z, topology=(Flat, Flat, Bounded))
+zf = znodes(grid, Face())
+zc = znodes(grid, Center())
+Δz = zspacings(grid, Center())
+Δz = view(Δz, 1, 1, :)  # for plotting
+
+axΔz3 = Axis(fig[1, 5];
+             xlabel = &quot;z-spacing (m)&quot;,
+             ylabel = &quot;z (m)&quot;,
+             title = &quot;PowerLawStretching(1.04)\n $(length(zf)-1) cells\n bottom interface at z = $(zf[1]) m\n constant spacing below 500 m&quot;)
+axz3 = Axis(fig[1, 6])
+
+ldepth = hlines!(axΔz3, -depth, color = :salmon, linestyle=:dash)
+lzbottom = hlines!(axΔz3, zf[1], color = :grey)
+scatter!(axΔz3, Δz, zc)
+
+hidespines!(axΔz3, :t, :r)
+
+lines!(axz3, [0, 0], [zf[1], 0], color=:gray)
+scatter!(axz3, 0 * zf, zf, marker=:hline, color=:gray, markersize=20)
+scatter!(axz3, 0 * zc, zc)
+hidedecorations!(axz3)
+hidespines!(axz3)
+
+
+linkaxes!(axΔz1, axz1, axΔz2, axz2, axΔz3, axz3)
+
+Legend(fig[2, :], [ldepth, lzbottom], [&quot;prescribed depth&quot;, &quot;bottom-most z interface&quot;], orientation = :horizontal)
+
+colsize!(fig.layout, 2, Relative(0.1))
+colsize!(fig.layout, 4, Relative(0.1))
+colsize!(fig.layout, 6, Relative(0.1))
+
+fig</code></pre><img src="7491869b.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../literated/near_global_ocean_simulation/">« Near-global ocean simulation</a><a class="docs-footer-nextpage" href="../interface_fluxes/">Interface fluxes »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.14.1 on <span class="colophon-date" title="Wednesday 23 July 2025 02:32">Wednesday 23 July 2025</span>. Using Julia version 1.10.9.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

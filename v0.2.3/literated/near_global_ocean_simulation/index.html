@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Near-global Ocean simulation · ClimaOcean.jl</title><meta name="title" content="Near-global Ocean simulation · ClimaOcean.jl"/><meta property="og:title" content="Near-global Ocean simulation · ClimaOcean.jl"/><meta property="twitter:title" content="Near-global Ocean simulation · ClimaOcean.jl"/><meta name="description" content="Documentation for ClimaOcean.jl."/><meta property="og:description" content="Documentation for ClimaOcean.jl."/><meta property="twitter:description" content="Documentation for ClimaOcean.jl."/><meta property="og:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/literated/near_global_ocean_simulation/"/><meta property="twitter:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/literated/near_global_ocean_simulation/"/><link rel="canonical" href="https://clima.github.io/ClimaOceanDocumentation/dev/literated/near_global_ocean_simulation/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">ClimaOcean.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../inspect_ecco_data/">Inspect ECCO2 data</a></li><li><a class="tocitem" href="../generate_bathymetry/">Generate bathymetry</a></li><li><a class="tocitem" href="../generate_surface_fluxes/">Surface fluxes</a></li><li><a class="tocitem" href="../single_column_os_papa_simulation/">Single column simulation</a></li><li class="is-active"><a class="tocitem" href>Near-global Ocean simulation</a><ul class="internal"><li><a class="tocitem" href="#Initial-setup-with-package-imports"><span>Initial setup with package imports</span></a></li><li><a class="tocitem" href="#The-coupled-simulation"><span>The coupled simulation</span></a></li><li><a class="tocitem" href="#A-pretty-movie"><span>A pretty movie</span></a></li></ul></li></ul></li><li><span class="tocitem">Library</span><ul><li><a class="tocitem" href="../../library/outline/">Contents</a></li><li><a class="tocitem" href="../../library/public/">Public</a></li><li><a class="tocitem" href="../../library/internals/">Private</a></li><li><a class="tocitem" href="../../library/function_index/">Function index</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Near-global Ocean simulation</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Near-global Ocean simulation</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl/blob/main/examples/near_global_ocean_simulation.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Near-global-ocean-simulation"><a class="docs-heading-anchor" href="#Near-global-ocean-simulation">Near-global ocean simulation</a><a id="Near-global-ocean-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Near-global-ocean-simulation" title="Permalink"></a></h1><p>This example sets up and runs a near-global ocean simulation using the Oceananigans.jl and ClimaOcean.jl. The simulation covers latitudes from 75°S to 75°N with a horizontal resolution of 1/4 degree and 40 vertical levels.</p><p>The simulation&#39;s results are visualized using the CairoMakie.jl package.</p><h2 id="Initial-setup-with-package-imports"><a class="docs-heading-anchor" href="#Initial-setup-with-package-imports">Initial setup with package imports</a><a id="Initial-setup-with-package-imports-1"></a><a class="docs-heading-anchor-permalink" href="#Initial-setup-with-package-imports" title="Permalink"></a></h2><p>We begin by importing the necessary Julia packages for visualization (CairoMakie), ocean modeling (Oceananigans, ClimaOcean), and handling dates and times (CFTime, Dates). These packages provide the foundational tools for setting up the simulation environment, including grid setup, physical processes modeling, and data visualization.</p><pre><code class="language-julia hljs">using Printf
+using Oceananigans
+using Oceananigans.Units
+using ClimaOcean
+using CairoMakie
+
+using CFTime
+using Dates</code></pre><h3 id="Grid-configuration"><a class="docs-heading-anchor" href="#Grid-configuration">Grid configuration</a><a id="Grid-configuration-1"></a><a class="docs-heading-anchor-permalink" href="#Grid-configuration" title="Permalink"></a></h3><p>We define a global grid with a horizontal resolution of 1/4 degree and 40 vertical levels. The grid is a <code>LatitudeLongitudeGrid</code> spanning latitudes from 75°S to 75°N. We use an exponential vertical spacing to better resolve the upper ocean layers. The total depth of the domain is set to 6000 meters. Finally, we specify the architecture for the simulation, which in this case is a GPU.</p><pre><code class="language-julia hljs">arch = GPU()
+
+Nx = 1440
+Ny = 600
+Nz = 40
+
+depth = 6000meters
+z_faces = exponential_z_faces(; Nz, depth)
+
+grid = LatitudeLongitudeGrid(arch;
+                             size = (Nx, Ny, Nz),
+                             halo = (7, 7, 7),
+                             z = z_faces,
+                             latitude  = (-75, 75),
+                             longitude = (0, 360))</code></pre><pre><code class="nohighlight hljs">1440×600×40 LatitudeLongitudeGrid{Float64, Oceananigans.Grids.Periodic, Oceananigans.Grids.Bounded, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.GPU with 7×7×7 halo and with precomputed metrics
+├── longitude: Periodic λ ∈ [0.0, 360.0)   regularly spaced with Δλ=0.25
+├── latitude:  Bounded  φ ∈ [-75.0, 75.0]  regularly spaced with Δφ=0.25
+└── z:         Bounded  z ∈ [-6000.0, 0.0] variably spaced with min(Δz)=8.0258, max(Δz)=645.588</code></pre><h3 id="Bathymetry-and-immersed-boundary"><a class="docs-heading-anchor" href="#Bathymetry-and-immersed-boundary">Bathymetry and immersed boundary</a><a id="Bathymetry-and-immersed-boundary-1"></a><a class="docs-heading-anchor-permalink" href="#Bathymetry-and-immersed-boundary" title="Permalink"></a></h3><p>We use <code>regrid_bathymetry</code> to derive the bottom height from ETOPO1 data. To smooth the interpolated data we use 5 interpolation passes. We also fill in all the minor enclosed basins except the 3 largest <code>major_basins</code>, as well as regions that are shallower than <code>minimum_depth</code>.</p><pre><code class="language-julia hljs">bottom_height = regrid_bathymetry(grid;
+                                  minimum_depth = 10meters,
+                                  interpolation_passes = 5,
+                                  major_basins = 3)
+
+grid = ImmersedBoundaryGrid(grid, GridFittedBottom(bottom_height))</code></pre><pre><code class="nohighlight hljs">1440×600×40 ImmersedBoundaryGrid{Float64, Oceananigans.Grids.Periodic, Oceananigans.Grids.Bounded, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.GPU with 7×7×7 halo:
+├── immersed_boundary: GridFittedBottom(mean(z)=-2517.97, min(z)=-10318.0, max(z)=0.0)
+├── underlying_grid: 1440×600×40 LatitudeLongitudeGrid{Float64, Oceananigans.Grids.Periodic, Oceananigans.Grids.Bounded, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.GPU with 7×7×7 halo and with precomputed metrics
+├── longitude: Periodic λ ∈ [0.0, 360.0)   regularly spaced with Δλ=0.25
+├── latitude:  Bounded  φ ∈ [-75.0, 75.0]  regularly spaced with Δφ=0.25
+└── z:         Bounded  z ∈ [-6000.0, 0.0] variably spaced with min(Δz)=8.0258, max(Δz)=645.588</code></pre><p>Let&#39;s see what the bathymetry looks like:</p><pre><code class="language-julia hljs">h = grid.immersed_boundary.bottom_height
+
+fig, ax, hm = heatmap(h, colormap=:deep, colorrange=(-depth, 0))
+cb = Colorbar(fig[0, 1], hm, label=&quot;Bottom height (m)&quot;, vertical=false)
+hidedecorations!(ax)
+save(&quot;bathymetry.png&quot;, fig)</code></pre><p><img src="../bathymetry.png" alt/></p><h3 id="Ocean-model-configuration"><a class="docs-heading-anchor" href="#Ocean-model-configuration">Ocean model configuration</a><a id="Ocean-model-configuration-1"></a><a class="docs-heading-anchor-permalink" href="#Ocean-model-configuration" title="Permalink"></a></h3><p>We build our ocean model using <code>ocean_simulation</code>,</p><pre><code class="language-julia hljs">ocean = ocean_simulation(grid)</code></pre><pre><code class="nohighlight hljs">Simulation of HydrostaticFreeSurfaceModel{GPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── Next time step: 5 minutes
+├── Elapsed wall time: 0 seconds
+├── Wall time per iteration: NaN days
+├── Stop time: Inf days
+├── Stop iteration : Inf
+├── Wall time limit: Inf
+├── Callbacks: OrderedDict with 4 entries:
+│   ├── stop_time_exceeded =&gt; Callback of stop_time_exceeded on IterationInterval(1)
+│   ├── stop_iteration_exceeded =&gt; Callback of stop_iteration_exceeded on IterationInterval(1)
+│   ├── wall_time_limit_exceeded =&gt; Callback of wall_time_limit_exceeded on IterationInterval(1)
+│   └── nan_checker =&gt; Callback of NaNChecker for u on IterationInterval(100)
+├── Output writers: OrderedDict with no entries
+└── Diagnostics: OrderedDict with no entries</code></pre><p>which uses the default <code>ocean.model</code>,</p><pre><code class="language-julia hljs">ocean.model</code></pre><pre><code class="nohighlight hljs">HydrostaticFreeSurfaceModel{GPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── grid: 1440×600×40 ImmersedBoundaryGrid{Float64, Oceananigans.Grids.Periodic, Oceananigans.Grids.Bounded, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.GPU with 7×7×7 halo
+├── timestepper: QuasiAdamsBashforth2TimeStepper
+├── tracers: (T, S, e)
+├── closure: CATKEVerticalDiffusivity{VerticallyImplicitTimeDiscretization}
+├── buoyancy: SeawaterBuoyancy with g=9.80665 and BoussinesqEquationOfState{Float64} with ĝ = NegativeZDirection()
+├── free surface: Oceananigans.Models.HydrostaticFreeSurfaceModels.SplitExplicitFreeSurfaces.SplitExplicitFreeSurface with gravitational acceleration 9.80665 m s⁻²
+│   └── substepping: FixedTimeStepSize(20.254 seconds)
+├── advection scheme: 
+│   ├── momentum: Vector Invariant, Dimension-by-dimension reconstruction
+│   ├── T: FluxFormAdvection(x=WENO(order=7), y=WENO(order=7), z=Centered(order=2))
+│   ├── S: FluxFormAdvection(x=WENO(order=7), y=WENO(order=7), z=Centered(order=2))
+│   └── e: Nothing
+└── coriolis: Oceananigans.Coriolis.HydrostaticSphericalCoriolis{Oceananigans.Coriolis.ActiveCellEnstrophyConserving, Float64}</code></pre><p>We initialize the ocean model to ECCO2 temperature and salinity for January 1, 1993.</p><pre><code class="language-julia hljs">date = DateTimeProlepticGregorian(1993, 1, 1)
+set!(ocean.model, T=ECCOMetadata(:temperature; dates=date),
+                  S=ECCOMetadata(:salinity; dates=date))</code></pre><pre><code class="nohighlight hljs">[ Info: Inpainting ClimaOcean.DataWrangling.ECCO.ECCO4Monthly temperature data from 1993-01-01T00:00:00...
+[ Info:  ... (6.526 seconds)
+[ Info: Inpainting ClimaOcean.DataWrangling.ECCO.ECCO4Monthly salinity data from 1993-01-01T00:00:00...
+[ Info:  ... (1.140 seconds)
+</code></pre><h3 id="Prescribed-atmosphere-and-radiation"><a class="docs-heading-anchor" href="#Prescribed-atmosphere-and-radiation">Prescribed atmosphere and radiation</a><a id="Prescribed-atmosphere-and-radiation-1"></a><a class="docs-heading-anchor-permalink" href="#Prescribed-atmosphere-and-radiation" title="Permalink"></a></h3><p>Next we build a prescribed atmosphere state and radiation model, which will drive the development of the ocean simulation. We use the default <code>Radiation</code> model,</p><pre><code class="language-julia hljs"># The radiation model specifies an ocean albedo emissivity to compute the net radiative
+# fluxes. The default ocean albedo is based on Payne (1982) and depends on cloud cover
+# (calculated from the ratio of maximum possible incident solar radiation to actual
+# incident solar radiation) and latitude. The ocean emissivity is set to 0.97.
+
+radiation = Radiation(arch)</code></pre><pre><code class="nohighlight hljs">Radiation{Float64}:
+├── stefan_boltzmann_constant: 5.67e-8
+├── emission: SurfaceProperties
+│   ├── ocean: 0.97
+│   └── sea_ice: 0.97
+└── reflection: SurfaceProperties
+    ├── ocean: LatitudeDepedendentAlbedo{Float64}: 0.069 - 0.011 ⋅ cos(2φ)
+    └── sea_ice: 0.7</code></pre><p>The atmospheric data is prescribed using the JRA55 dataset. The number of snapshots that are loaded into memory is determined by the <code>backend</code></p><p>into memory in 41 snapshots at a time. The JRA55 dataset provides atmospheric data such as temperature, humidity, and wind fields to calculate turbulent fluxes using bulk formulae, see <a href="@ref"><code>CrossRealmFluxes</code></a>.</p><pre><code class="language-julia hljs">atmosphere = JRA55_prescribed_atmosphere(arch; backend=JRA55NetCDFBackend(41))</code></pre><pre><code class="nohighlight hljs">640×320×1×2920 PrescribedAtmosphere{Float32} on Oceananigans.Grids.LatitudeLongitudeGrid:
+├── times: 2920-element StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64}
+├── reference_height: 10.0
+└── boundary_layer_height: 10.0</code></pre><h2 id="The-coupled-simulation"><a class="docs-heading-anchor" href="#The-coupled-simulation">The coupled simulation</a><a id="The-coupled-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#The-coupled-simulation" title="Permalink"></a></h2><p>Next we assemble the ocean, atmosphere, and radiation into a coupled model,</p><pre><code class="language-julia hljs">coupled_model = OceanSeaIceModel(ocean; atmosphere, radiation)</code></pre><pre><code class="nohighlight hljs">OceanSeaIceModel{GPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── ocean: HydrostaticFreeSurfaceModel{GPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── atmosphere: 640×320×1×2920 PrescribedAtmosphere{Float32}
+└── sea_ice: ClimaOcean.OceanSeaIceModels.FreezingLimitedOceanTemperature{ClimaSeaIce.SeaIceThermodynamics.LinearLiquidus{Float64}}
+</code></pre><p>We then create a coupled simulation, starting with a time step of 10 seconds and running the simulation for 10 days.</p><pre><code class="language-julia hljs">simulation = Simulation(coupled_model; Δt=90, stop_time=10days)</code></pre><pre><code class="nohighlight hljs">Simulation of OceanSeaIceModel{GPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── Next time step: 1.500 minutes
+├── Elapsed wall time: 0 seconds
+├── Wall time per iteration: NaN days
+├── Stop time: 10 days
+├── Stop iteration : Inf
+├── Wall time limit: Inf
+├── Callbacks: OrderedDict with 4 entries:
+│   ├── stop_time_exceeded =&gt; Callback of stop_time_exceeded on IterationInterval(1)
+│   ├── stop_iteration_exceeded =&gt; Callback of stop_iteration_exceeded on IterationInterval(1)
+│   ├── wall_time_limit_exceeded =&gt; Callback of wall_time_limit_exceeded on IterationInterval(1)
+│   └── nan_checker =&gt; Callback of NaNChecker for u_ocean on IterationInterval(100)
+├── Output writers: OrderedDict with no entries
+└── Diagnostics: OrderedDict with no entries</code></pre><p>We define a callback function to monitor the simulation&#39;s progress,</p><pre><code class="language-julia hljs">wall_time = Ref(time_ns())
+
+function progress(sim)
+    ocean = sim.model.ocean
+    u, v, w = ocean.model.velocities
+    T = ocean.model.tracers.T
+
+    Tmax = maximum(interior(T))
+    Tmin = minimum(interior(T))
+
+    umax = (maximum(abs, interior(u)),
+            maximum(abs, interior(v)),
+            maximum(abs, interior(w)))
+
+    step_time = 1e-9 * (time_ns() - wall_time[])
+
+    msg = @sprintf(&quot;Iter: %d, time: %s, Δt: %s&quot;, iteration(sim), prettytime(sim), prettytime(sim.Δt))
+    msg *= @sprintf(&quot;, max|u|: (%.2e, %.2e, %.2e) m s⁻¹, extrema(T): (%.2f, %.2f) ᵒC, wall time: %s&quot;,
+                    umax..., Tmax, Tmin, prettytime(step_time))
+
+    @info msg
+
+    wall_time[] = time_ns()
+end
+
+simulation.callbacks[:progress] = Callback(progress, TimeInterval(5days))</code></pre><pre><code class="nohighlight hljs">Callback of progress on TimeInterval(5 days)</code></pre><h3 id="Set-up-output-writers"><a class="docs-heading-anchor" href="#Set-up-output-writers">Set up output writers</a><a id="Set-up-output-writers-1"></a><a class="docs-heading-anchor-permalink" href="#Set-up-output-writers" title="Permalink"></a></h3><p>We define output writers to save the simulation data at regular intervals. In this case, we save the surface fluxes and surface fields at a relatively high frequency (every day). The <code>indices</code> keyword argument allows us to save down a slice at the surface, which is located at <code>k = grid.Nz</code></p><pre><code class="language-julia hljs">outputs = merge(ocean.model.tracers, ocean.model.velocities)
+ocean.output_writers[:surface] = JLD2OutputWriter(ocean.model, outputs;
+                                                  schedule = TimeInterval(1days),
+                                                  filename = &quot;near_global_surface_fields&quot;,
+                                                  indices = (:, :, grid.Nz),
+                                                  with_halos = true,
+                                                  overwrite_existing = true,
+                                                  array_type = Array{Float32})</code></pre><pre><code class="nohighlight hljs">JLD2OutputWriter scheduled on TimeInterval(1 day):
+├── filepath: near_global_surface_fields.jld2
+├── 6 outputs: (T, S, e, u, v, w)
+├── array type: Array{Float32}
+├── including: [:grid, :coriolis, :buoyancy, :closure]
+├── file_splitting: NoFileSplitting
+└── file size: 13.8 MiB</code></pre><h3 id="Spinning-up-the-simulation"><a class="docs-heading-anchor" href="#Spinning-up-the-simulation">Spinning up the simulation</a><a id="Spinning-up-the-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Spinning-up-the-simulation" title="Permalink"></a></h3><p>We spin up the simulation with a very short time-step to resolve the &quot;initialization shock&quot; associated with starting from ECCO initial conditions that are both interpolated and also satisfy a different dynamical balance than our simulation.</p><pre><code class="language-julia hljs">run!(simulation)</code></pre><pre><code class="nohighlight hljs">[ Info: Initializing simulation...
+[ Info: Iter: 0, time: 0 seconds, Δt: 1.500 minutes, max|u|: (0.00e+00, 0.00e+00, 0.00e+00) m s⁻¹, extrema(T): (31.25, -1.96) ᵒC, wall time: 2.574 minutes
+[ Info:     ... simulation initialization complete (6.822 seconds)
+[ Info: Executing initial time step...
+┌ Warning: Simulation stopped during initialization.
+└ @ Oceananigans.Simulations /central/scratch/esm/slurm-buildkite/climaocean-examples/1047/depot/default/packages/Oceananigans/dgGml/src/Simulations/run.jl:129
+[ Info:     ... initial time step complete (2.668 minutes).
+[ Info: Iter: 4800, time: 5 days, Δt: 1.500 minutes, max|u|: (1.75e+00, 2.20e+00, 2.25e-02) m s⁻¹, extrema(T): (34.53, -10.11) ᵒC, wall time: 1.037 hours
+[ Info: Simulation is stopping after running for 2.021 hours.
+[ Info: Simulation time 10 days equals or exceeds stop time 10 days.
+[ Info: Iter: 9600, time: 10 days, Δt: 1.500 minutes, max|u|: (2.15e+00, 2.34e+00, 2.02e-02) m s⁻¹, extrema(T): (37.87, -15.16) ᵒC, wall time: 59.050 minutes
+</code></pre><h3 id="Running-the-simulation-for-real"><a class="docs-heading-anchor" href="#Running-the-simulation-for-real">Running the simulation for real</a><a id="Running-the-simulation-for-real-1"></a><a class="docs-heading-anchor-permalink" href="#Running-the-simulation-for-real" title="Permalink"></a></h3><pre><code class="language-julia hljs">simulation.stop_time = 60days
+simulation.Δt = 10minutes
+run!(simulation)</code></pre><pre><code class="nohighlight hljs">[ Info: Initializing simulation...
+[ Info:     ... simulation initialization complete (1.083 ms)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (9.735 seconds).
+[ Info: time = 1.104e6, iteration = 10000: NaN found in field u_ocean. Stopping simulation.
+</code></pre><h2 id="A-pretty-movie"><a class="docs-heading-anchor" href="#A-pretty-movie">A pretty movie</a><a id="A-pretty-movie-1"></a><a class="docs-heading-anchor-permalink" href="#A-pretty-movie" title="Permalink"></a></h2><p>It&#39;s time to make a pretty movie of the simulation. First we plot a snapshot:</p><pre><code class="language-julia hljs">u = FieldTimeSeries(&quot;near_global_surface_fields.jld2&quot;, &quot;u&quot;; backend = OnDisk())
+v = FieldTimeSeries(&quot;near_global_surface_fields.jld2&quot;, &quot;v&quot;; backend = OnDisk())
+T = FieldTimeSeries(&quot;near_global_surface_fields.jld2&quot;, &quot;T&quot;; backend = OnDisk())
+e = FieldTimeSeries(&quot;near_global_surface_fields.jld2&quot;, &quot;e&quot;; backend = OnDisk())
+
+times = u.times
+Nt = length(times)
+
+n = Observable(Nt)
+
+land = interior(T.grid.immersed_boundary.bottom_height) .&gt;= 0
+
+Tn = @lift begin
+    Tn = interior(T[$n])
+    Tn[land] .= NaN
+    view(Tn, :, :, 1)
+end
+
+en = @lift begin
+    en = interior(e[$n])
+    en[land] .= NaN
+    view(en, :, :, 1)
+end
+
+un = Field{Face, Center, Nothing}(u.grid)
+vn = Field{Center, Face, Nothing}(v.grid)
+s = Field(sqrt(un^2 + vn^2))
+
+sn = @lift begin
+    parent(un) .= parent(u[$n])
+    parent(vn) .= parent(v[$n])
+    compute!(s)
+    sn = interior(s)
+    sn[land] .= NaN
+    view(sn, :, :, 1)
+end
+
+fig = Figure(size = (800, 1200))
+
+axs = Axis(fig[1, 1], xlabel=&quot;Longitude (deg)&quot;, ylabel=&quot;Latitude (deg)&quot;)
+axT = Axis(fig[2, 1], xlabel=&quot;Longitude (deg)&quot;, ylabel=&quot;Latitude (deg)&quot;)
+axe = Axis(fig[3, 1], xlabel=&quot;Longitude (deg)&quot;, ylabel=&quot;Latitude (deg)&quot;)
+
+hm = heatmap!(axs, sn, colorrange = (0, 0.5), colormap = :deep, nan_color=:lightgray)
+Colorbar(fig[1, 2], hm, label = &quot;Surface speed (m s⁻¹)&quot;)
+
+hm = heatmap!(axT, Tn, colorrange = (-1, 30), colormap = :magma, nan_color=:lightgray)
+Colorbar(fig[2, 2], hm, label = &quot;Surface Temperature (ᵒC)&quot;)
+
+hm = heatmap!(axe, en, colorrange = (0, 1e-3), colormap = :solar, nan_color=:lightgray)
+Colorbar(fig[3, 2], hm, label = &quot;Turbulent Kinetic Energy (m² s⁻²)&quot;)
+save(&quot;snapshot.png&quot;, fig)</code></pre><p><img src="../snapshot.png" alt/></p><p>And now a movie:</p><pre><code class="language-julia hljs">record(fig, &quot;near_global_ocean_surface.mp4&quot;, 1:Nt, framerate = 8) do nn
+    n[] = nn
+end</code></pre><p><video src="../near_global_ocean_surface.mp4" controls="true" title><a href="../near_global_ocean_surface.mp4"></a></video></p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../single_column_os_papa_simulation/">« Single column simulation</a><a class="docs-footer-nextpage" href="../../library/outline/">Contents »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 18 November 2024 20:03">Monday 18 November 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

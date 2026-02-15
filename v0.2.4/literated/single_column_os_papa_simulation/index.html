@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Single column simulation · ClimaOcean.jl</title><meta name="title" content="Single column simulation · ClimaOcean.jl"/><meta property="og:title" content="Single column simulation · ClimaOcean.jl"/><meta property="twitter:title" content="Single column simulation · ClimaOcean.jl"/><meta name="description" content="Documentation for ClimaOcean.jl."/><meta property="og:description" content="Documentation for ClimaOcean.jl."/><meta property="twitter:description" content="Documentation for ClimaOcean.jl."/><meta property="og:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/literated/single_column_os_papa_simulation/"/><meta property="twitter:url" content="https://clima.github.io/ClimaOceanDocumentation/dev/literated/single_column_os_papa_simulation/"/><link rel="canonical" href="https://clima.github.io/ClimaOceanDocumentation/dev/literated/single_column_os_papa_simulation/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">ClimaOcean.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../inspect_ecco_data/">Inspect ECCO2 data</a></li><li><a class="tocitem" href="../generate_bathymetry/">Generate bathymetry</a></li><li><a class="tocitem" href="../generate_surface_fluxes/">Surface fluxes</a></li><li class="is-active"><a class="tocitem" href>Single column simulation</a><ul class="internal"><li><a class="tocitem" href="#Install-dependencies"><span>Install dependencies</span></a></li><li class="toplevel"><a class="tocitem" href="#Construct-the-grid"><span>Construct the grid</span></a></li><li class="toplevel"><a class="tocitem" href="#An-&quot;ocean-simulation&quot;"><span>An &quot;ocean simulation&quot;</span></a></li><li class="toplevel"><a class="tocitem" href="#A-prescribed-atmosphere-based-on-JRA55-re-analysis"><span>A prescribed atmosphere based on JRA55 re-analysis</span></a></li></ul></li><li><a class="tocitem" href="../near_global_ocean_simulation/">Near-global Ocean simulation</a></li></ul></li><li><span class="tocitem">Library</span><ul><li><a class="tocitem" href="../../library/outline/">Contents</a></li><li><a class="tocitem" href="../../library/public/">Public</a></li><li><a class="tocitem" href="../../library/internals/">Private</a></li><li><a class="tocitem" href="../../library/function_index/">Function index</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Single column simulation</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Single column simulation</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl/blob/main/examples/single_column_os_papa_simulation.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Single-column-ocean-simulation-forced-by-JRA55-re-analysis"><a class="docs-heading-anchor" href="#Single-column-ocean-simulation-forced-by-JRA55-re-analysis">Single column ocean simulation forced by JRA55 re-analysis</a><a id="Single-column-ocean-simulation-forced-by-JRA55-re-analysis-1"></a><a class="docs-heading-anchor-permalink" href="#Single-column-ocean-simulation-forced-by-JRA55-re-analysis" title="Permalink"></a></h1><p>In this example, we simulate the evolution of an ocean water column forced by an atmosphere derived from the JRA55 re-analysis. The simulated column is located at ocean station Papa (144.9ᵒ W and 50.1ᵒ N)</p><h2 id="Install-dependencies"><a class="docs-heading-anchor" href="#Install-dependencies">Install dependencies</a><a id="Install-dependencies-1"></a><a class="docs-heading-anchor-permalink" href="#Install-dependencies" title="Permalink"></a></h2><p>First let&#39;s make sure we have all required packages installed.</p><pre><code class="language-julia hljs">using Pkg
+pkg&quot;add Oceananigans, ClimaOcean, CairoMakie&quot;</code></pre><pre><code class="language-julia hljs">using ClimaOcean
+
+using Oceananigans
+using Oceananigans.Units
+using Oceananigans.BuoyancyModels: buoyancy_frequency
+using Oceananigans.Units: Time
+
+using CairoMakie
+using Printf</code></pre><h1 id="Construct-the-grid"><a class="docs-heading-anchor" href="#Construct-the-grid">Construct the grid</a><a id="Construct-the-grid-1"></a><a class="docs-heading-anchor-permalink" href="#Construct-the-grid" title="Permalink"></a></h1><p>First, we construct a single column grid with 2 meter spacing located at ocean station Papa.</p><p>Ocean station papa location</p><pre><code class="language-julia hljs">location_name = &quot;ocean_station_papa&quot;
+λ★, φ★ = 35.1, 50.1
+
+grid = RectilinearGrid(size = 200,
+                       x = λ★,
+                       y = φ★,
+                       z = (-400, 0),
+                       topology = (Flat, Flat, Bounded))</code></pre><pre><code class="nohighlight hljs">1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── Flat x = 35.1              
+├── Flat y = 50.1              
+└── Bounded  z ∈ [-400.0, 0.0] regularly spaced with Δz=2.0</code></pre><h1 id="An-&quot;ocean-simulation&quot;"><a class="docs-heading-anchor" href="#An-&quot;ocean-simulation&quot;">An &quot;ocean simulation&quot;</a><a id="An-&quot;ocean-simulation&quot;-1"></a><a class="docs-heading-anchor-permalink" href="#An-&quot;ocean-simulation&quot;" title="Permalink"></a></h1><p>Next, we use ClimaOcean&#39;s ocean_simulation constructor to build a realistic ocean simulation on the single column grid,</p><pre><code class="language-julia hljs">ocean = ocean_simulation(grid; Δt=10minutes, coriolis=FPlane(latitude = φ★))</code></pre><pre><code class="nohighlight hljs">Simulation of HydrostaticFreeSurfaceModel{CPU, RectilinearGrid}(time = 0 seconds, iteration = 0)
+├── Next time step: 10 minutes
+├── Elapsed wall time: 0 seconds
+├── Wall time per iteration: NaN days
+├── Stop time: Inf days
+├── Stop iteration: Inf
+├── Wall time limit: Inf
+├── Callbacks: OrderedDict with 4 entries:
+│   ├── stop_time_exceeded =&gt; Callback of stop_time_exceeded on IterationInterval(1)
+│   ├── stop_iteration_exceeded =&gt; Callback of stop_iteration_exceeded on IterationInterval(1)
+│   ├── wall_time_limit_exceeded =&gt; Callback of wall_time_limit_exceeded on IterationInterval(1)
+│   └── nan_checker =&gt; Callback of NaNChecker for u on IterationInterval(100)
+├── Output writers: OrderedDict with no entries
+└── Diagnostics: OrderedDict with no entries</code></pre><p>which wraps around the ocean model</p><pre><code class="language-julia hljs">ocean.model</code></pre><pre><code class="nohighlight hljs">HydrostaticFreeSurfaceModel{CPU, RectilinearGrid}(time = 0 seconds, iteration = 0)
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── timestepper: QuasiAdamsBashforth2TimeStepper
+├── tracers: (T, S, e)
+├── closure: CATKEVerticalDiffusivity{VerticallyImplicitTimeDiscretization}
+├── buoyancy: SeawaterBuoyancy with g=9.80665 and BoussinesqEquationOfState{Float64} with ĝ = NegativeZDirection()
+├── advection scheme: 
+│   ├── momentum: Nothing
+│   ├── T: Nothing
+│   ├── S: Nothing
+│   └── e: Nothing
+└── coriolis: Oceananigans.Coriolis.FPlane{Float64}</code></pre><p>We set initial conditions from ECCO:</p><pre><code class="language-julia hljs">set!(ocean.model, T=ECCOMetadata(:temperature), S=ECCOMetadata(:salinity))</code></pre><pre><code class="nohighlight hljs">[ Info: Inpainting ClimaOcean.DataWrangling.ECCO.ECCO4Monthly temperature data from 1993-01-01T00:00:00...
+[ Info:  ... (1.220 minutes)
+[ Info: Inpainting ClimaOcean.DataWrangling.ECCO.ECCO4Monthly salinity data from 1993-01-01T00:00:00...
+[ Info:  ... (1.224 minutes)
+</code></pre><h1 id="A-prescribed-atmosphere-based-on-JRA55-re-analysis"><a class="docs-heading-anchor" href="#A-prescribed-atmosphere-based-on-JRA55-re-analysis">A prescribed atmosphere based on JRA55 re-analysis</a><a id="A-prescribed-atmosphere-based-on-JRA55-re-analysis-1"></a><a class="docs-heading-anchor-permalink" href="#A-prescribed-atmosphere-based-on-JRA55-re-analysis" title="Permalink"></a></h1><p>We build a PrescribedAtmosphere at the same location as the single colunm grid which is based on the JRA55 reanalysis.</p><pre><code class="language-julia hljs">simulation_days = 31
+snapshots_per_day = 8 # corresponding to JRA55&#39;s 3-hour frequency
+last_time = simulation_days * snapshots_per_day
+atmosphere = JRA55_prescribed_atmosphere(1:last_time;
+                                         longitude = λ★,
+                                         latitude = φ★,
+                                         backend = InMemory())</code></pre><pre><code class="nohighlight hljs">2×2×1×248 PrescribedAtmosphere{Float32} on Oceananigans.Grids.LatitudeLongitudeGrid:
+├── times: 248-element StepRangeLen{Float64, Base.TwicePrecision{Float64}, Base.TwicePrecision{Float64}, Int64}
+├── reference_height: 10.0
+└── boundary_layer_height: 600.0</code></pre><p>This builds a representation of the atmosphere on the small grid</p><pre><code class="language-julia hljs">atmosphere.grid</code></pre><pre><code class="nohighlight hljs">2×2×1 LatitudeLongitudeGrid{Float32, Oceananigans.Grids.Bounded, Oceananigans.Grids.Bounded, Oceananigans.Grids.Flat} on Oceananigans.Architectures.CPU with 2×2×0 halo and with precomputed metrics
+├── longitude: Bounded  λ ∈ [34.5938, 35.7188] variably spaced with min(Δλ)=0.5625, max(Δλ)=0.5625
+├── latitude:  Bounded  φ ∈ [49.4227, 50.5459] variably spaced with min(Δφ)=0.561619, max(Δφ)=0.561623
+└── z:         Flat z                          </code></pre><p>Let&#39;s take a look at the atmospheric state</p><pre><code class="language-julia hljs">ua = interior(atmosphere.velocities.u, 1, 1, 1, :)
+va = interior(atmosphere.velocities.v, 1, 1, 1, :)
+Ta = interior(atmosphere.tracers.T, 1, 1, 1, :)
+qa = interior(atmosphere.tracers.q, 1, 1, 1, :)
+t_days = atmosphere.times / days
+
+fig = Figure(size=(800, 600))
+axu = Axis(fig[2, 1], xlabel=&quot;Days since Jan 1 1990&quot;, ylabel=&quot;Atmosphere \n velocity (m s⁻¹)&quot;)
+axT = Axis(fig[3, 1], xlabel=&quot;Days since Jan 1 1990&quot;, ylabel=&quot;Atmosphere \n temperature (K)&quot;)
+axq = Axis(fig[4, 1], xlabel=&quot;Days since Jan 1 1990&quot;, ylabel=&quot;Atmosphere \n specific humidity&quot;)
+Label(fig[1, 1], &quot;Atmospheric state over ocean station Papa&quot;, tellwidth=false)
+
+lines!(axu, t_days, ua, label=&quot;Zonal velocity&quot;)
+lines!(axu, t_days, va, label=&quot;Meridional velocity&quot;)
+ylims!(axu, -6, 6)
+axislegend(axu, framevisible=false, nbanks=2, position=:lb)
+
+lines!(axT, t_days, Ta)
+lines!(axq, t_days, qa)
+
+display(fig)
+
+radiation = Radiation()
+coupled_model = OceanSeaIceModel(ocean; atmosphere, radiation)
+simulation = Simulation(coupled_model, Δt=ocean.Δt, stop_time=30days)
+
+wall_clock = Ref(time_ns())
+
+function progress(sim)
+    msg = &quot;Ocean Station Papa&quot;
+    msg *= string(&quot;, iter: &quot;, iteration(sim), &quot;, time: &quot;, prettytime(sim))
+
+    elapsed = 1e-9 * (time_ns() - wall_clock[])
+    msg *= string(&quot;, wall time: &quot;, prettytime(elapsed))
+    wall_clock[] = time_ns()
+
+    u, v, w = sim.model.ocean.model.velocities
+    msg *= @sprintf(&quot;, max|u|: (%.2e, %.2e)&quot;, maximum(abs, u), maximum(abs, v))
+
+    T = sim.model.ocean.model.tracers.T
+    S = sim.model.ocean.model.tracers.S
+    e = sim.model.ocean.model.tracers.e
+
+    τx = first(sim.model.fluxes.total.ocean.momentum.u)
+    τy = first(sim.model.fluxes.total.ocean.momentum.v)
+    Q = first(sim.model.fluxes.total.ocean.heat)
+
+    u★ = sqrt(sqrt(τx^2 + τy^2))
+
+    Nz = size(T, 3)
+    msg *= @sprintf(&quot;, u★: %.2f m s⁻¹&quot;, u★)
+    msg *= @sprintf(&quot;, Q: %.2f W m⁻²&quot;,  Q)
+    msg *= @sprintf(&quot;, T₀: %.2f ᵒC&quot;, first(interior(T, 1, 1, Nz)))
+    msg *= @sprintf(&quot;, extrema(T): (%.2f, %.2f) ᵒC&quot;, minimum(T), maximum(T))
+    msg *= @sprintf(&quot;, S₀: %.2f g/kg&quot;, first(interior(S, 1, 1, Nz)))
+    msg *= @sprintf(&quot;, e₀: %.2e m² s⁻²&quot;, first(interior(e, 1, 1, Nz)))
+
+    @info msg
+end
+
+simulation.callbacks[:progress] = Callback(progress, IterationInterval(100))</code></pre><pre><code class="nohighlight hljs">Callback of progress on IterationInterval(100)</code></pre><p>Build flux outputs</p><pre><code class="language-julia hljs">τx = coupled_model.fluxes.total.ocean.momentum.u
+τy = coupled_model.fluxes.total.ocean.momentum.v
+JT = coupled_model.fluxes.total.ocean.tracers.T
+Js = coupled_model.fluxes.total.ocean.tracers.S
+E  = coupled_model.fluxes.turbulent.fields.water_vapor
+Qc = coupled_model.fluxes.turbulent.fields.sensible_heat
+Qv = coupled_model.fluxes.turbulent.fields.latent_heat
+ρₒ = coupled_model.fluxes.ocean_reference_density
+cₚ = coupled_model.fluxes.ocean_heat_capacity
+
+Q = ρₒ * cₚ * JT
+ρτx = ρₒ * τx
+ρτy = ρₒ * τy
+N² = buoyancy_frequency(ocean.model)
+κc = ocean.model.diffusivity_fields.κc
+
+fluxes = (; ρτx, ρτy, E, Js, Qv, Qc)
+auxiliary_fields = (; N², κc)
+fields = merge(ocean.model.velocities, ocean.model.tracers, auxiliary_fields)</code></pre><pre><code class="nohighlight hljs">(u = 1×1×200 Field{Oceananigans.Grids.Face, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: Flux, top: Flux, immersed: ZeroFlux
+└── data: 1×1×206 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:203) with eltype Float64 with indices 1:1×1:1×-2:203
+    └── max=0.0, min=0.0, mean=0.0, v = 1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Face, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: Flux, top: Flux, immersed: ZeroFlux
+└── data: 1×1×206 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:203) with eltype Float64 with indices 1:1×1:1×-2:203
+    └── max=0.0, min=0.0, mean=0.0, w = ZeroField{Int64}, T = 1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: ZeroFlux, top: Flux, immersed: ZeroFlux
+└── data: 1×1×206 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:203) with eltype Float64 with indices 1:1×1:1×-2:203
+    └── max=17.4568, min=14.8668, mean=16.0725, S = 1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: ZeroFlux, top: Flux, immersed: ZeroFlux
+└── data: 1×1×206 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:203) with eltype Float64 with indices 1:1×1:1×-2:203
+    └── max=39.0664, min=38.5484, mean=38.9286, e = 1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: ZeroFlux, top: Flux, immersed: ZeroFlux
+└── data: 1×1×206 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:203) with eltype Float64 with indices 1:1×1:1×-2:203
+    └── max=0.0, min=0.0, mean=0.0, N² = KernelFunctionOperation at (Center, Center, Face)
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── kernel_function: ∂z_b (generic function with 4 methods)
+└── arguments: (&quot;SeawaterBuoyancy with g=9.80665 and BoussinesqEquationOfState{Float64}&quot;, &quot;(T=1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU, S=1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU, e=1×1×200 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Center} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU)&quot;), κc = 1×1×201 Field{Oceananigans.Grids.Center, Oceananigans.Grids.Center, Oceananigans.Grids.Face} on Oceananigans.Grids.RectilinearGrid on Oceananigans.Architectures.CPU
+├── grid: 1×1×200 RectilinearGrid{Float64, Oceananigans.Grids.Flat, Oceananigans.Grids.Flat, Oceananigans.Grids.Bounded} on Oceananigans.Architectures.CPU with 0×0×3 halo
+├── boundary conditions: FieldBoundaryConditions
+│   └── west: Nothing, east: Nothing, south: Nothing, north: Nothing, bottom: Nothing, top: Nothing, immersed: ZeroFlux
+└── data: 1×1×207 OffsetArray(::Array{Float64, 3}, 1:1, 1:1, -2:204) with eltype Float64 with indices 1:1×1:1×-2:204
+    └── max=4.09156e-5, min=0.0, mean=3.04304e-7)</code></pre><p>Slice fields at the surface</p><pre><code class="language-julia hljs">outputs = merge(fields, fluxes)
+
+filename = &quot;single_column_omip_$(location_name)&quot;
+
+simulation.output_writers[:jld2] = JLD2OutputWriter(ocean.model, outputs; filename,
+                                                    schedule = TimeInterval(3hours),
+                                                    overwrite_existing = true)
+
+run!(simulation)
+
+filename *= &quot;.jld2&quot;
+
+u  = FieldTimeSeries(filename, &quot;u&quot;)
+v  = FieldTimeSeries(filename, &quot;v&quot;)
+T  = FieldTimeSeries(filename, &quot;T&quot;)
+S  = FieldTimeSeries(filename, &quot;S&quot;)
+e  = FieldTimeSeries(filename, &quot;e&quot;)
+N² = FieldTimeSeries(filename, &quot;N²&quot;)
+κ  = FieldTimeSeries(filename, &quot;κc&quot;)
+
+Qv = FieldTimeSeries(filename, &quot;Qv&quot;)
+Qc = FieldTimeSeries(filename, &quot;Qc&quot;)
+Js = FieldTimeSeries(filename, &quot;Js&quot;)
+Ev = FieldTimeSeries(filename, &quot;E&quot;)
+ρτx = FieldTimeSeries(filename, &quot;ρτx&quot;)
+ρτy = FieldTimeSeries(filename, &quot;ρτy&quot;)
+
+Nz = size(T, 3)
+times = Qc.times
+
+ua  = atmosphere.velocities.u
+va  = atmosphere.velocities.v
+Ta  = atmosphere.tracers.T
+qa  = atmosphere.tracers.q
+Qlw = atmosphere.downwelling_radiation.longwave
+Qsw = atmosphere.downwelling_radiation.shortwave
+Pr  = atmosphere.freshwater_flux.rain
+Ps  = atmosphere.freshwater_flux.snow
+
+Nt   = length(times)
+uat  = zeros(Nt)
+vat  = zeros(Nt)
+Tat  = zeros(Nt)
+qat  = zeros(Nt)
+Qswt = zeros(Nt)
+Qlwt = zeros(Nt)
+Pt   = zeros(Nt)
+
+for n = 1:Nt
+    t = times[n]
+    uat[n]  =  ua[1, 1, 1, Time(t)]
+    vat[n]  =  va[1, 1, 1, Time(t)]
+    Tat[n]  =  Ta[1, 1, 1, Time(t)]
+    qat[n]  =  qa[1, 1, 1, Time(t)]
+    Qswt[n] = Qsw[1, 1, 1, Time(t)]
+    Qlwt[n] = Qlw[1, 1, 1, Time(t)]
+    Pt[n]   =  Pr[1, 1, 1, Time(t)] + Ps[1, 1, 1, Time(t)]
+end
+
+set_theme!(Theme(linewidth=3))
+
+fig = Figure(size=(2400, 1800))
+
+axτ = Axis(fig[1, 1:2], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Wind stress (N m⁻²)&quot;)
+axu = Axis(fig[2, 1:2], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Velocities (m s⁻¹)&quot;)
+axQ = Axis(fig[1, 3:4], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Heat flux (W m⁻²)&quot;)
+axT = Axis(fig[2, 3:4], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Surface temperature (ᵒC)&quot;)
+axF = Axis(fig[1, 5:6], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Freshwater volume flux (m s⁻¹)&quot;)
+axS = Axis(fig[2, 5:6], xlabel=&quot;Days since Oct 1 1992&quot;, ylabel=&quot;Surface salinity (g kg⁻¹)&quot;)
+
+axuz = Axis(fig[3, 1], xlabel=&quot;Velocities (m s⁻¹)&quot;,                ylabel=&quot;z (m)&quot;)
+axTz = Axis(fig[3, 2], xlabel=&quot;Temperature (ᵒC)&quot;,                  ylabel=&quot;z (m)&quot;)
+axSz = Axis(fig[3, 3], xlabel=&quot;Salinity (g kg⁻¹)&quot;,                 ylabel=&quot;z (m)&quot;)
+axNz = Axis(fig[3, 4], xlabel=&quot;Buoyancy frequency (s⁻²)&quot;,          ylabel=&quot;z (m)&quot;)
+axκz = Axis(fig[3, 5], xlabel=&quot;Eddy diffusivity (m² s⁻¹)&quot;,         ylabel=&quot;z (m)&quot;, xscale=log10)
+axez = Axis(fig[3, 6], xlabel=&quot;Turbulent kinetic energy (m² s⁻²)&quot;, ylabel=&quot;z (m)&quot;, xscale=log10)
+
+title = @sprintf(&quot;Single column simulation at %.2f, %.2f&quot;, φ★, λ★)
+Label(fig[0, 1:6], title)
+
+slider = Slider(fig[4, 1:6], range=1:Nt, startvalue=1)
+n = slider.value
+
+times = (times .- times[1]) ./days
+Nt = length(times)
+tn = @lift times[$n]
+
+colors = Makie.wong_colors()
+
+ρₒ = coupled_model.fluxes.ocean_reference_density
+τx = interior(ρτx, 1, 1, 1, :) ./ ρₒ
+τy = interior(ρτy, 1, 1, 1, :) ./ ρₒ
+u★ = @. (τx^2 + τy^2)^(1/4)
+
+lines!(axu, times, interior(u, 1, 1, Nz, :), color=colors[1], label=&quot;Zonal&quot;)
+lines!(axu, times, interior(v, 1, 1, Nz, :), color=colors[2], label=&quot;Meridional&quot;)
+lines!(axu, times, u★, color=colors[3], label=&quot;Ocean-side u★&quot;)
+vlines!(axu, tn, linewidth=4, color=(:black, 0.5))
+axislegend(axu)
+
+lines!(axτ, times, interior(ρτx, 1, 1, 1, :), label=&quot;Zonal&quot;)
+lines!(axτ, times, interior(ρτy, 1, 1, 1, :), label=&quot;Meridional&quot;)
+vlines!(axτ, tn, linewidth=4, color=(:black, 0.5))
+axislegend(axτ)
+
+lines!(axT, times, Tat[1:Nt] .- 273.15,      color=colors[1], linewidth=2, linestyle=:dash, label=&quot;Atmosphere temperature&quot;)
+lines!(axT, times, interior(T, 1, 1, Nz, :), color=colors[2], linewidth=4, label=&quot;Ocean surface temperature&quot;)
+vlines!(axT, tn, linewidth=4, color=(:black, 0.5))
+axislegend(axT)
+
+lines!(axQ, times, interior(Qv, 1, 1, 1, 1:Nt),    color=colors[2], label=&quot;Sensible&quot;,  linewidth=2)
+lines!(axQ, times, interior(Qc, 1, 1, 1, 1:Nt),    color=colors[3], label=&quot;Latent&quot;,    linewidth=2)
+lines!(axQ, times, - interior(Qsw, 1, 1, 1, 1:Nt), color=colors[4], label=&quot;Shortwave&quot;, linewidth=2)
+lines!(axQ, times, - interior(Qlw, 1, 1, 1, 1:Nt), color=colors[5], label=&quot;Longwave&quot;,  linewidth=2)
+vlines!(axQ, tn, linewidth=4, color=(:black, 0.5))
+axislegend(axQ)
+
+lines!(axF, times, Pt[1:Nt], label=&quot;Prescribed freshwater flux&quot;)
+lines!(axF, times, - interior(Ev, 1, 1, 1, 1:Nt), label=&quot;Evaporation&quot;)
+vlines!(axF, tn, linewidth=4, color=(:black, 0.5))
+axislegend(axF)
+
+lines!(axS, times, interior(S, 1, 1, Nz, :))
+vlines!(axS, tn, linewidth=4, color=(:black, 0.5))
+
+zc = znodes(T)
+zf = znodes(κ)
+un  = @lift interior(u[$n],  1, 1, :)
+vn  = @lift interior(v[$n],  1, 1, :)
+Tn  = @lift interior(T[$n],  1, 1, :)
+Sn  = @lift interior(S[$n],  1, 1, :)
+κn  = @lift interior(κ[$n],  1, 1, :)
+en  = @lift interior(e[$n],  1, 1, :)
+N²n = @lift interior(N²[$n], 1, 1, :)
+
+scatterlines!(axuz, un,  zc, label=&quot;u&quot;)
+scatterlines!(axuz, vn,  zc, label=&quot;v&quot;)
+scatterlines!(axTz, Tn,  zc)
+scatterlines!(axSz, Sn,  zc)
+scatterlines!(axez, en,  zc)
+scatterlines!(axNz, N²n, zf)
+scatterlines!(axκz, κn,  zf)
+
+axislegend(axuz)
+
+Tmax = maximum(interior(T))
+Tmin = minimum(interior(T))
+xlims!(axTz, Tmin - 0.1, Tmax + 0.1)
+
+Nmax = maximum(interior(N²))
+Nmin = minimum(interior(N²))
+xlims!(axNz, Nmin / 2, Nmin * 1.1)
+
+emax = maximum(interior(e))
+xlims!(axez, 8e-7, emax * 1.1)
+xlims!(axκz, 1e-7, 10)
+
+Smax = maximum(interior(S))
+Smin = minimum(interior(S))
+xlims!(axSz, Smin - 0.2, Smax + 0.2)
+
+record(fig, &quot;single_column_profiles.mp4&quot;, 1:2:Nt, framerate=24) do nn
+    @info &quot;Drawing frame $nn of $Nt...&quot;
+    n[] = nn
+end</code></pre><pre><code class="nohighlight hljs">[ Info: Initializing simulation...
+[ Info: Ocean Station Papa, iter: 0, time: 0 seconds, wall time: 2.679 minutes, max|u|: (0.00e+00, 0.00e+00), u★: 0.00 m s⁻¹, Q: 232.78 W m⁻², T₀: 17.38 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.55 g/kg, e₀: 0.00e+00 m² s⁻²
+[ Info:     ... simulation initialization complete (5.380 minutes)
+[ Info: Executing initial time step...
+┌ Warning: Simulation stopped during initialization.
+└ @ Oceananigans.Simulations /central/scratch/esm/slurm-buildkite/climaocean-examples/1133/depot/default/packages/Oceananigans/ohMpu/src/Simulations/run.jl:129
+[ Info:     ... initial time step complete (14.426 seconds).
+[ Info: Ocean Station Papa, iter: 100, time: 16.667 hours, wall time: 5.911 minutes, max|u|: (1.53e-04, 7.64e-04), u★: 0.00 m s⁻¹, Q: 261.26 W m⁻², T₀: 17.34 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 3.19e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 200, time: 1.389 days, wall time: 813.396 ms, max|u|: (3.01e-04, 1.90e-03), u★: 0.00 m s⁻¹, Q: 181.47 W m⁻², T₀: 17.30 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 1.82e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 300, time: 2.083 days, wall time: 700.686 ms, max|u|: (1.70e-04, 9.27e-04), u★: 0.00 m s⁻¹, Q: 191.75 W m⁻², T₀: 17.27 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 2.46e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 400, time: 2.778 days, wall time: 776.033 ms, max|u|: (1.30e-03, 1.29e-03), u★: 0.00 m s⁻¹, Q: 242.76 W m⁻², T₀: 17.24 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 2.27e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 500, time: 3.472 days, wall time: 810.164 ms, max|u|: (1.34e-03, 6.33e-04), u★: 0.00 m s⁻¹, Q: 254.63 W m⁻², T₀: 17.20 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 3.01e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 600, time: 4.167 days, wall time: 878.523 ms, max|u|: (7.67e-04, 1.43e-03), u★: 0.00 m s⁻¹, Q: 212.42 W m⁻², T₀: 17.15 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 2.49e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 700, time: 4.861 days, wall time: 836.139 ms, max|u|: (5.52e-05, 1.88e-03), u★: 0.00 m s⁻¹, Q: 175.63 W m⁻², T₀: 17.13 ᵒC, extrema(T): (14.87, 17.46) ᵒC, S₀: 38.56 g/kg, e₀: 2.16e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 800, time: 5.556 days, wall time: 938.834 ms, max|u|: (8.14e-04, 1.52e-03), u★: 0.00 m s⁻¹, Q: 166.69 W m⁻², T₀: 17.10 ᵒC, extrema(T): (14.87, 17.39) ᵒC, S₀: 38.57 g/kg, e₀: 2.55e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 900, time: 6.250 days, wall time: 904.285 ms, max|u|: (2.19e-03, 1.44e-03), u★: 0.00 m s⁻¹, Q: 186.30 W m⁻², T₀: 17.07 ᵒC, extrema(T): (14.87, 17.36) ᵒC, S₀: 38.57 g/kg, e₀: 2.44e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1000, time: 6.944 days, wall time: 1.025 seconds, max|u|: (1.89e-03, 1.80e-04), u★: 0.00 m s⁻¹, Q: 183.07 W m⁻², T₀: 17.04 ᵒC, extrema(T): (14.87, 17.36) ᵒC, S₀: 38.57 g/kg, e₀: 2.63e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1100, time: 7.639 days, wall time: 967.891 ms, max|u|: (2.64e-03, 8.74e-04), u★: 0.00 m s⁻¹, Q: 196.86 W m⁻², T₀: 17.02 ᵒC, extrema(T): (14.87, 17.28) ᵒC, S₀: 38.57 g/kg, e₀: 2.49e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1200, time: 8.333 days, wall time: 1.049 seconds, max|u|: (1.88e-03, 5.63e-04), u★: 0.00 m s⁻¹, Q: 85.95 W m⁻², T₀: 16.99 ᵒC, extrema(T): (14.87, 17.27) ᵒC, S₀: 38.57 g/kg, e₀: 1.70e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1300, time: 9.028 days, wall time: 1.353 seconds, max|u|: (1.90e-03, 1.24e-03), u★: 0.00 m s⁻¹, Q: 195.95 W m⁻², T₀: 16.96 ᵒC, extrema(T): (14.87, 17.27) ᵒC, S₀: 38.58 g/kg, e₀: 3.03e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1400, time: 9.722 days, wall time: 1.291 seconds, max|u|: (1.28e-03, 2.06e-03), u★: 0.00 m s⁻¹, Q: 184.79 W m⁻², T₀: 16.93 ᵒC, extrema(T): (14.87, 17.21) ᵒC, S₀: 38.58 g/kg, e₀: 2.51e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1500, time: 10.417 days, wall time: 1.285 seconds, max|u|: (3.36e-03, 4.39e-03), u★: 0.00 m s⁻¹, Q: 239.17 W m⁻², T₀: 16.89 ᵒC, extrema(T): (14.87, 17.17) ᵒC, S₀: 38.58 g/kg, e₀: 3.04e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1600, time: 11.111 days, wall time: 1.179 seconds, max|u|: (1.69e-03, 3.12e-03), u★: 0.00 m s⁻¹, Q: 212.68 W m⁻², T₀: 16.86 ᵒC, extrema(T): (14.87, 17.17) ᵒC, S₀: 38.58 g/kg, e₀: 2.86e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1700, time: 11.806 days, wall time: 1.563 seconds, max|u|: (8.60e-05, 3.05e-03), u★: 0.00 m s⁻¹, Q: 137.42 W m⁻², T₀: 16.84 ᵒC, extrema(T): (14.87, 17.13) ᵒC, S₀: 38.59 g/kg, e₀: 1.90e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1800, time: 12.500 days, wall time: 1.166 seconds, max|u|: (1.55e-03, 3.15e-03), u★: 0.00 m s⁻¹, Q: 202.47 W m⁻², T₀: 16.82 ᵒC, extrema(T): (14.87, 17.09) ᵒC, S₀: 38.59 g/kg, e₀: 2.57e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 1900, time: 13.194 days, wall time: 1.607 seconds, max|u|: (2.32e-03, 3.97e-03), u★: 0.00 m s⁻¹, Q: 247.62 W m⁻², T₀: 16.78 ᵒC, extrema(T): (14.87, 17.08) ᵒC, S₀: 38.59 g/kg, e₀: 3.61e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2000, time: 13.889 days, wall time: 1.619 seconds, max|u|: (1.25e-03, 3.32e-03), u★: 0.00 m s⁻¹, Q: 360.37 W m⁻², T₀: 16.73 ᵒC, extrema(T): (14.87, 17.04) ᵒC, S₀: 38.59 g/kg, e₀: 3.97e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2100, time: 14.583 days, wall time: 1.520 seconds, max|u|: (2.02e-03, 2.70e-03), u★: 0.00 m s⁻¹, Q: 298.53 W m⁻², T₀: 16.69 ᵒC, extrema(T): (14.87, 16.98) ᵒC, S₀: 38.60 g/kg, e₀: 3.42e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2200, time: 15.278 days, wall time: 1.463 seconds, max|u|: (1.97e-03, 1.56e-03), u★: 0.00 m s⁻¹, Q: 218.40 W m⁻², T₀: 16.64 ᵒC, extrema(T): (14.87, 16.98) ᵒC, S₀: 38.60 g/kg, e₀: 3.15e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2300, time: 15.972 days, wall time: 1.428 seconds, max|u|: (2.18e-03, 8.61e-04), u★: 0.00 m s⁻¹, Q: 280.61 W m⁻², T₀: 16.60 ᵒC, extrema(T): (14.87, 16.90) ᵒC, S₀: 38.60 g/kg, e₀: 3.56e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2400, time: 16.667 days, wall time: 1.389 seconds, max|u|: (1.89e-03, 3.03e-04), u★: 0.00 m s⁻¹, Q: 223.01 W m⁻², T₀: 16.57 ᵒC, extrema(T): (14.87, 16.90) ᵒC, S₀: 38.61 g/kg, e₀: 2.93e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2500, time: 17.361 days, wall time: 1.413 seconds, max|u|: (1.88e-03, 1.26e-03), u★: 0.00 m s⁻¹, Q: 81.78 W m⁻², T₀: 16.54 ᵒC, extrema(T): (14.87, 16.90) ᵒC, S₀: 38.61 g/kg, e₀: 1.83e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2600, time: 18.056 days, wall time: 1.446 seconds, max|u|: (1.14e-03, 1.59e-03), u★: 0.00 m s⁻¹, Q: 262.60 W m⁻², T₀: 16.51 ᵒC, extrema(T): (14.87, 16.88) ᵒC, S₀: 38.61 g/kg, e₀: 3.74e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2700, time: 18.750 days, wall time: 1.592 seconds, max|u|: (2.33e-04, 1.24e-03), u★: 0.00 m s⁻¹, Q: 286.11 W m⁻², T₀: 16.49 ᵒC, extrema(T): (14.87, 16.82) ᵒC, S₀: 38.61 g/kg, e₀: 3.79e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2800, time: 19.444 days, wall time: 1.072 seconds, max|u|: (4.81e-04, 1.23e-03), u★: 0.00 m s⁻¹, Q: 163.27 W m⁻², T₀: 16.45 ᵒC, extrema(T): (14.87, 16.82) ᵒC, S₀: 38.61 g/kg, e₀: 2.16e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 2900, time: 20.139 days, wall time: 1.189 seconds, max|u|: (9.19e-04, 1.13e-03), u★: 0.00 m s⁻¹, Q: 224.43 W m⁻², T₀: 16.42 ᵒC, extrema(T): (14.87, 16.82) ᵒC, S₀: 38.62 g/kg, e₀: 3.48e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3000, time: 20.833 days, wall time: 991.651 ms, max|u|: (1.63e-03, 9.63e-05), u★: 0.00 m s⁻¹, Q: 264.77 W m⁻², T₀: 16.39 ᵒC, extrema(T): (14.87, 16.77) ᵒC, S₀: 38.62 g/kg, e₀: 3.82e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3100, time: 21.528 days, wall time: 1.217 seconds, max|u|: (1.49e-03, 5.81e-04), u★: 0.00 m s⁻¹, Q: 220.15 W m⁻², T₀: 16.36 ᵒC, extrema(T): (14.87, 16.74) ᵒC, S₀: 38.62 g/kg, e₀: 2.92e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3200, time: 22.222 days, wall time: 1.057 seconds, max|u|: (9.29e-04, 1.01e-03), u★: 0.00 m s⁻¹, Q: 143.97 W m⁻², T₀: 16.33 ᵒC, extrema(T): (14.87, 16.74) ᵒC, S₀: 38.62 g/kg, e₀: 2.68e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3300, time: 22.917 days, wall time: 1.392 seconds, max|u|: (5.07e-04, 1.81e-03), u★: 0.00 m s⁻¹, Q: 226.24 W m⁻², T₀: 16.31 ᵒC, extrema(T): (14.87, 16.74) ᵒC, S₀: 38.62 g/kg, e₀: 3.35e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3400, time: 23.611 days, wall time: 877.320 ms, max|u|: (5.92e-04, 2.12e-03), u★: 0.00 m s⁻¹, Q: 202.04 W m⁻², T₀: 16.28 ᵒC, extrema(T): (14.87, 16.68) ᵒC, S₀: 38.63 g/kg, e₀: 2.55e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3500, time: 24.306 days, wall time: 981.604 ms, max|u|: (1.05e-03, 1.18e-03), u★: 0.00 m s⁻¹, Q: 127.61 W m⁻², T₀: 16.25 ᵒC, extrema(T): (14.87, 16.66) ᵒC, S₀: 38.63 g/kg, e₀: 2.47e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3600, time: 25 days, wall time: 863.657 ms, max|u|: (3.03e-03, 2.64e-03), u★: 0.01 m s⁻¹, Q: 410.07 W m⁻², T₀: 16.21 ᵒC, extrema(T): (14.87, 16.66) ᵒC, S₀: 38.63 g/kg, e₀: 4.56e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3700, time: 25.694 days, wall time: 1.189 seconds, max|u|: (9.61e-04, 2.46e-03), u★: 0.00 m s⁻¹, Q: 343.23 W m⁻², T₀: 16.17 ᵒC, extrema(T): (14.87, 16.58) ᵒC, S₀: 38.64 g/kg, e₀: 4.45e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3800, time: 26.389 days, wall time: 1.021 seconds, max|u|: (8.11e-04, 1.80e-03), u★: 0.00 m s⁻¹, Q: 163.10 W m⁻², T₀: 16.13 ᵒC, extrema(T): (14.87, 16.58) ᵒC, S₀: 38.64 g/kg, e₀: 2.43e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 3900, time: 27.083 days, wall time: 1.039 seconds, max|u|: (1.40e-04, 1.55e-03), u★: 0.00 m s⁻¹, Q: 406.33 W m⁻², T₀: 16.08 ᵒC, extrema(T): (14.87, 16.53) ᵒC, S₀: 38.64 g/kg, e₀: 4.84e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 4000, time: 27.778 days, wall time: 1.323 seconds, max|u|: (3.16e-04, 1.98e-03), u★: 0.00 m s⁻¹, Q: 395.20 W m⁻², T₀: 16.04 ᵒC, extrema(T): (14.87, 16.53) ᵒC, S₀: 38.65 g/kg, e₀: 4.72e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 4100, time: 28.472 days, wall time: 964.564 ms, max|u|: (4.29e-04, 1.55e-03), u★: 0.00 m s⁻¹, Q: 227.02 W m⁻², T₀: 16.00 ᵒC, extrema(T): (14.87, 16.49) ᵒC, S₀: 38.65 g/kg, e₀: 2.93e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 4200, time: 29.167 days, wall time: 1.371 seconds, max|u|: (1.21e-03, 6.53e-04), u★: 0.00 m s⁻¹, Q: 219.16 W m⁻², T₀: 15.97 ᵒC, extrema(T): (14.87, 16.49) ᵒC, S₀: 38.65 g/kg, e₀: 3.18e-04 m² s⁻²
+[ Info: Ocean Station Papa, iter: 4300, time: 29.861 days, wall time: 1.252 seconds, max|u|: (1.98e-03, 2.05e-04), u★: 0.00 m s⁻¹, Q: 355.56 W m⁻², T₀: 15.94 ᵒC, extrema(T): (14.87, 16.49) ᵒC, S₀: 38.65 g/kg, e₀: 4.08e-04 m² s⁻²
+[ Info: Simulation is stopping after running for 6.752 minutes.
+[ Info: Simulation time 30 days equals or exceeds stop time 30 days.
+[ Info: Drawing frame 1 of 241...
+[ Info: Drawing frame 3 of 241...
+[ Info: Drawing frame 5 of 241...
+[ Info: Drawing frame 7 of 241...
+[ Info: Drawing frame 9 of 241...
+[ Info: Drawing frame 11 of 241...
+[ Info: Drawing frame 13 of 241...
+[ Info: Drawing frame 15 of 241...
+[ Info: Drawing frame 17 of 241...
+[ Info: Drawing frame 19 of 241...
+[ Info: Drawing frame 21 of 241...
+[ Info: Drawing frame 23 of 241...
+[ Info: Drawing frame 25 of 241...
+[ Info: Drawing frame 27 of 241...
+[ Info: Drawing frame 29 of 241...
+[ Info: Drawing frame 31 of 241...
+[ Info: Drawing frame 33 of 241...
+[ Info: Drawing frame 35 of 241...
+[ Info: Drawing frame 37 of 241...
+[ Info: Drawing frame 39 of 241...
+[ Info: Drawing frame 41 of 241...
+[ Info: Drawing frame 43 of 241...
+[ Info: Drawing frame 45 of 241...
+[ Info: Drawing frame 47 of 241...
+[ Info: Drawing frame 49 of 241...
+[ Info: Drawing frame 51 of 241...
+[ Info: Drawing frame 53 of 241...
+[ Info: Drawing frame 55 of 241...
+[ Info: Drawing frame 57 of 241...
+[ Info: Drawing frame 59 of 241...
+[ Info: Drawing frame 61 of 241...
+[ Info: Drawing frame 63 of 241...
+[ Info: Drawing frame 65 of 241...
+[ Info: Drawing frame 67 of 241...
+[ Info: Drawing frame 69 of 241...
+[ Info: Drawing frame 71 of 241...
+[ Info: Drawing frame 73 of 241...
+[ Info: Drawing frame 75 of 241...
+[ Info: Drawing frame 77 of 241...
+[ Info: Drawing frame 79 of 241...
+[ Info: Drawing frame 81 of 241...
+[ Info: Drawing frame 83 of 241...
+[ Info: Drawing frame 85 of 241...
+[ Info: Drawing frame 87 of 241...
+[ Info: Drawing frame 89 of 241...
+[ Info: Drawing frame 91 of 241...
+[ Info: Drawing frame 93 of 241...
+[ Info: Drawing frame 95 of 241...
+[ Info: Drawing frame 97 of 241...
+[ Info: Drawing frame 99 of 241...
+[ Info: Drawing frame 101 of 241...
+[ Info: Drawing frame 103 of 241...
+[ Info: Drawing frame 105 of 241...
+[ Info: Drawing frame 107 of 241...
+[ Info: Drawing frame 109 of 241...
+[ Info: Drawing frame 111 of 241...
+[ Info: Drawing frame 113 of 241...
+[ Info: Drawing frame 115 of 241...
+[ Info: Drawing frame 117 of 241...
+[ Info: Drawing frame 119 of 241...
+[ Info: Drawing frame 121 of 241...
+[ Info: Drawing frame 123 of 241...
+[ Info: Drawing frame 125 of 241...
+[ Info: Drawing frame 127 of 241...
+[ Info: Drawing frame 129 of 241...
+[ Info: Drawing frame 131 of 241...
+[ Info: Drawing frame 133 of 241...
+[ Info: Drawing frame 135 of 241...
+[ Info: Drawing frame 137 of 241...
+[ Info: Drawing frame 139 of 241...
+[ Info: Drawing frame 141 of 241...
+[ Info: Drawing frame 143 of 241...
+[ Info: Drawing frame 145 of 241...
+[ Info: Drawing frame 147 of 241...
+[ Info: Drawing frame 149 of 241...
+[ Info: Drawing frame 151 of 241...
+[ Info: Drawing frame 153 of 241...
+[ Info: Drawing frame 155 of 241...
+[ Info: Drawing frame 157 of 241...
+[ Info: Drawing frame 159 of 241...
+[ Info: Drawing frame 161 of 241...
+[ Info: Drawing frame 163 of 241...
+[ Info: Drawing frame 165 of 241...
+[ Info: Drawing frame 167 of 241...
+[ Info: Drawing frame 169 of 241...
+[ Info: Drawing frame 171 of 241...
+[ Info: Drawing frame 173 of 241...
+[ Info: Drawing frame 175 of 241...
+[ Info: Drawing frame 177 of 241...
+[ Info: Drawing frame 179 of 241...
+[ Info: Drawing frame 181 of 241...
+[ Info: Drawing frame 183 of 241...
+[ Info: Drawing frame 185 of 241...
+[ Info: Drawing frame 187 of 241...
+[ Info: Drawing frame 189 of 241...
+[ Info: Drawing frame 191 of 241...
+[ Info: Drawing frame 193 of 241...
+[ Info: Drawing frame 195 of 241...
+[ Info: Drawing frame 197 of 241...
+[ Info: Drawing frame 199 of 241...
+[ Info: Drawing frame 201 of 241...
+[ Info: Drawing frame 203 of 241...
+[ Info: Drawing frame 205 of 241...
+[ Info: Drawing frame 207 of 241...
+[ Info: Drawing frame 209 of 241...
+[ Info: Drawing frame 211 of 241...
+[ Info: Drawing frame 213 of 241...
+[ Info: Drawing frame 215 of 241...
+[ Info: Drawing frame 217 of 241...
+[ Info: Drawing frame 219 of 241...
+[ Info: Drawing frame 221 of 241...
+[ Info: Drawing frame 223 of 241...
+[ Info: Drawing frame 225 of 241...
+[ Info: Drawing frame 227 of 241...
+[ Info: Drawing frame 229 of 241...
+[ Info: Drawing frame 231 of 241...
+[ Info: Drawing frame 233 of 241...
+[ Info: Drawing frame 235 of 241...
+[ Info: Drawing frame 237 of 241...
+[ Info: Drawing frame 239 of 241...
+[ Info: Drawing frame 241 of 241...
+</code></pre><p><video src="../single_column_profiles.mp4" controls="true" title><a href="../single_column_profiles.mp4"></a></video></p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../generate_surface_fluxes/">« Surface fluxes</a><a class="docs-footer-nextpage" href="../near_global_ocean_simulation/">Near-global Ocean simulation »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 25 November 2024 03:04">Monday 25 November 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

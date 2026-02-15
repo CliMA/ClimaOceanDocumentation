@@ -1,0 +1,73 @@
+Starting SpeedyWeather.jl run_0001 on Thu, 18 Dec 2025 01:45:04
+Integrating:
+SpectralGrid{Spectrum{...}, RingGrids.FullClenshawGrid{...}}
+├ Number format: Float32
+├ Spectral:      T63 LowerTriangularMatrix
+├ Grid:          95-ring RingGrids.FullClenshawGrid, 18240 grid points
+├ Resolution:    1.5°, 167km (at 6371km radius)
+├ Vertical:      4-layer atmosphere, 2-layer land
+└ Architecture:  CPU using Array
+Time: 10.0 days at Δt = 1200.0s
+
+All data will be stored in /var/lib/buildkite-agent/builds/clima-ocean-tartarus-1/clima/climaocean-examples/docs/src/literated/run_0001
+
+  5%, ETA: 0:25:40, 120658.06 millenia/day
+ 10%, ETA: 0:17:31, 244763.49 millenia/day
+ 15%, ETA: 0:14:28, 368868.93 millenia/day
+ 20%, ETA: 0:12:35, 492974.36 millenia/day
+ 25%, ETA: 0:11:10, 617079.79 millenia/day
+ 30%, ETA: 0:10:01, 741185.23 millenia/day
+ 35%, ETA: 0:09:02, 865290.66 millenia/day
+ 40%, ETA: 0:08:09, 989396.09 millenia/day
+ 45%, ETA: 0:07:21, 1113501.53 millenia/day
+ 50%, ETA: 0:06:36, 1237606.96 millenia/day
+ 55%, ETA: 0:05:52, 1361712.39 millenia/day
+ 60%, ETA: 0:05:10, 1485817.83 millenia/day
+ 65%, ETA: 0:04:30, 1609923.26 millenia/day
+ 70%, ETA: 0:03:49, 1734028.69 millenia/day
+ 75%, ETA: 0:03:10, 1858134.13 millenia/day
+ 80%, ETA: 0:02:32, 1982239.56 millenia/day
+ 85%, ETA: 0:01:53, 2106345.00 millenia/day
+ 90%, ETA: 0:01:15, 2230450.43 millenia/day
+ 95%, ETA: 0:00:38, 2354555.86 millenia/day
+100%, ETA: 0:00:01, 2475213.92 millenia/day
+105%, ETA: 0:00:-36, 2599319.36 millenia/day
+110%, ETA: 0:-1:-13, 2723424.79 millenia/day
+115%, ETA: 0:-1:-50, 2847530.22 millenia/day
+120%, ETA: 0:-2:-27, 2971635.66 millenia/day
+125%, ETA: 0:-3:-3, 3095741.09 millenia/day
+130%, ETA: 0:-3:-40, 3219846.52 millenia/day
+135%, ETA: 0:-4:-16, 3343951.96 millenia/day
+140%, ETA: 0:-4:-53, 3468057.39 millenia/day
+145%, ETA: 0:-5:-29, 3592162.82 millenia/day
+150%, ETA: 0:-6:-5, 3716268.26 millenia/day
+155%, ETA: 0:-6:-41, 3840373.69 millenia/day
+160%, ETA: 0:-7:-18, 3964479.12 millenia/day
+165%, ETA: 0:-7:-54, 4088584.56 millenia/day
+170%, ETA: 0:-8:-30, 4212689.99 millenia/day
+175%, ETA: 0:-9:-7, 4336795.42 millenia/day
+180%, ETA: 0:-9:-43, 4460900.86 millenia/day
+185%, ETA: 0:-10:-19, 4585006.29 millenia/day
+190%, ETA: 0:-10:-55, 4709111.72 millenia/day
+195%, ETA: 0:-11:-32, 4833217.16 millenia/day
+200%, ETA: 0:-12:-7, 4953875.22 millenia/day
+205%, ETA: 0:-12:-44, 5077980.65 millenia/day
+210%, ETA: 0:-13:-20, 5202086.08 millenia/day
+215%, ETA: 0:-13:-57, 5326191.52 millenia/day
+220%, ETA: 0:-14:-33, 5450296.95 millenia/day
+225%, ETA: 0:-15:-10, 5574402.38 millenia/day
+230%, ETA: 0:-15:-46, 5698507.82 millenia/day
+235%, ETA: 0:-16:-22, 5822613.25 millenia/day
+240%, ETA: 0:-16:-58, 5946718.68 millenia/day
+245%, ETA: 0:-17:-34, 6070824.12 millenia/day
+250%, ETA: 0:-18:-11, 6194929.55 millenia/day
+255%, ETA: 0:-18:-47, 6319034.99 millenia/day
+260%, ETA: 0:-19:-23, 6443140.42 millenia/day
+265%, ETA: 0:-19:-59, 6567245.85 millenia/day
+270%, ETA: 0:-20:-35, 6691351.29 millenia/day
+275%, ETA: 0:-21:-11, 6815456.72 millenia/day
+280%, ETA: 0:-21:-48, 6939562.15 millenia/day
+285%, ETA: 0:-22:-23, 7063667.59 millenia/day
+290%, ETA: 0:-22:-59, 7187773.02 millenia/day
+295%, ETA: 0:-23:-35, 7311878.45 millenia/day
+300%, ETA: 0:-24:-9, 7432536.51 millenia/day

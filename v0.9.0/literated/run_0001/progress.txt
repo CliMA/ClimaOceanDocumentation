@@ -1,0 +1,73 @@
+Starting SpeedyWeather.jl run_0001 on Fri, 23 Jan 2026 06:22:25
+Integrating:
+SpectralGrid{Spectrum{...}, RingGrids.FullClenshawGrid{...}}
+├ Number format: Float32
+├ Spectral:      T63 LowerTriangularMatrix
+├ Grid:          95-ring RingGrids.FullClenshawGrid, 18240 grid points
+├ Resolution:    1.5°, 167km (at 6371km radius)
+├ Vertical:      4-layer atmosphere, 2-layer land
+└ Architecture:  CPU using Array
+Time: 10.0 days at Δt = 1200.0s
+
+All data will be stored in /var/lib/buildkite-agent/builds/clima-ocean-tartarus-1/clima/climaocean-examples/docs/src/literated/run_0001
+
+  5%, ETA: 0:34:19,   Inf millenia/day
+ 10%, ETA: 0:24:26,   Inf millenia/day
+ 15%, ETA: 0:20:24,   Inf millenia/day
+ 20%, ETA: 0:17:46,   Inf millenia/day
+ 25%, ETA: 0:15:52,   Inf millenia/day
+ 30%, ETA: 0:14:14,   Inf millenia/day
+ 35%, ETA: 0:12:51,   Inf millenia/day
+ 40%, ETA: 0:11:37,   Inf millenia/day
+ 45%, ETA: 0:10:29,   Inf millenia/day
+ 50%, ETA: 0:09:25,   Inf millenia/day
+ 55%, ETA: 0:08:22,   Inf millenia/day
+ 60%, ETA: 0:07:21,   Inf millenia/day
+ 65%, ETA: 0:06:23,   Inf millenia/day
+ 70%, ETA: 0:05:25,   Inf millenia/day
+ 75%, ETA: 0:04:29,   Inf millenia/day
+ 80%, ETA: 0:03:34,   Inf millenia/day
+ 85%, ETA: 0:02:40,   Inf millenia/day
+ 90%, ETA: 0:01:46,   Inf millenia/day
+ 95%, ETA: 0:00:53,   Inf millenia/day
+100%, ETA: 0:00:01,   Inf millenia/day
+105%, ETA: 0:00:-51,   Inf millenia/day
+110%, ETA: 0:-1:-43,   Inf millenia/day
+115%, ETA: 0:-2:-34,   Inf millenia/day
+120%, ETA: 0:-3:-26,   Inf millenia/day
+125%, ETA: 0:-4:-17,   Inf millenia/day
+130%, ETA: 0:-5:-8,   Inf millenia/day
+135%, ETA: 0:-5:-59,   Inf millenia/day
+140%, ETA: 0:-6:-50,   Inf millenia/day
+145%, ETA: 0:-7:-41,   Inf millenia/day
+150%, ETA: 0:-8:-31,   Inf millenia/day
+155%, ETA: 0:-9:-22,   Inf millenia/day
+160%, ETA: 0:-10:-12,   Inf millenia/day
+165%, ETA: 0:-11:-1,   Inf millenia/day
+170%, ETA: 0:-11:-51,   Inf millenia/day
+175%, ETA: 0:-12:-41,   Inf millenia/day
+180%, ETA: 0:-13:-30,   Inf millenia/day
+185%, ETA: 0:-14:-20,   Inf millenia/day
+190%, ETA: 0:-15:-10,   Inf millenia/day
+195%, ETA: 0:-16:00,   Inf millenia/day
+200%, ETA: 0:-16:-47,   Inf millenia/day
+205%, ETA: 0:-17:-37,   Inf millenia/day
+210%, ETA: 0:-18:-29,   Inf millenia/day
+215%, ETA: 0:-19:-18,   Inf millenia/day
+220%, ETA: 0:-20:-7,   Inf millenia/day
+225%, ETA: 0:-20:-56,   Inf millenia/day
+230%, ETA: 0:-21:-46,   Inf millenia/day
+235%, ETA: 0:-22:-35,   Inf millenia/day
+240%, ETA: 0:-23:-24,   Inf millenia/day
+245%, ETA: 0:-24:-13,   Inf millenia/day
+250%, ETA: 0:-25:-1,   Inf millenia/day
+255%, ETA: 0:-25:-50,   Inf millenia/day
+260%, ETA: 0:-26:-38,   Inf millenia/day
+265%, ETA: 0:-27:-27,   Inf millenia/day
+270%, ETA: 0:-28:-15,   Inf millenia/day
+275%, ETA: 0:-29:-4,   Inf millenia/day
+280%, ETA: 0:-29:-52,   Inf millenia/day
+285%, ETA: 0:-30:-40,   Inf millenia/day
+290%, ETA: 0:-31:-29,   Inf millenia/day
+295%, ETA: 0:-32:-17,   Inf millenia/day
+300%, ETA: 0:-33:-4,   Inf millenia/day

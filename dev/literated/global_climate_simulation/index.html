@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Global climate simulation · ClimaOcean.jl</title><meta name="title" content="Global climate simulation · ClimaOcean.jl"/><meta property="og:title" content="Global climate simulation · ClimaOcean.jl"/><meta property="twitter:title" content="Global climate simulation · ClimaOcean.jl"/><meta name="description" content="Documentation for ClimaOcean.jl."/><meta property="og:description" content="Documentation for ClimaOcean.jl."/><meta property="twitter:description" content="Documentation for ClimaOcean.jl."/><meta property="og:url" content="https://clima.github.io/ClimaOceanDocumentation/stable/literated/global_climate_simulation/"/><meta property="twitter:url" content="https://clima.github.io/ClimaOceanDocumentation/stable/literated/global_climate_simulation/"/><link rel="canonical" href="https://clima.github.io/ClimaOceanDocumentation/stable/literated/global_climate_simulation/"/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../">ClimaOcean.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><span class="tocitem">Examples</span><ul><li><a class="tocitem" href="../single_column_os_papa_simulation/">Single-column ocean simulation</a></li><li><a class="tocitem" href="../one_degree_simulation/">One-degree ocean–sea ice simulation</a></li><li><a class="tocitem" href="../near_global_ocean_simulation/">Near-global ocean simulation</a></li><li class="is-active"><a class="tocitem" href>Global climate simulation</a><ul class="internal"><li><a class="tocitem" href="#Ocean-and-sea-ice-model-configuration"><span>Ocean and sea-ice model configuration</span></a></li><li><a class="tocitem" href="#Atmosphere-model-configuration"><span>Atmosphere model configuration</span></a></li><li><a class="tocitem" href="#The-coupled-model"><span>The coupled model</span></a></li><li><a class="tocitem" href="#Building-and-running-the-simulation"><span>Building and running the simulation</span></a></li><li><a class="tocitem" href="#Visualizing-the-results"><span>Visualizing the results</span></a></li></ul></li></ul></li><li><span class="tocitem">Developers</span><ul><li><a class="tocitem" href="../slab_ocean/">OceanSeaIceModel interface</a></li></ul></li><li><a class="tocitem" href="../../vertical_grids/">Vertical grids</a></li><li><span class="tocitem">Metadata</span><ul><li><a class="tocitem" href="../../Metadata/metadata_overview/">Overview</a></li><li><a class="tocitem" href="../../Metadata/supported_variables/">Supported variables</a></li></ul></li><li><a class="tocitem" href="../../interface_fluxes/">Interface fluxes</a></li><li><span class="tocitem">Library</span><ul><li><a class="tocitem" href="../../library/outline/">Contents</a></li><li><a class="tocitem" href="../../library/public/">Public</a></li><li><a class="tocitem" href="../../library/internals/">Private</a></li><li><a class="tocitem" href="../../library/function_index/">Function index</a></li></ul></li><li><a class="tocitem" href="../../references/">References</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Global climate simulation</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Global climate simulation</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/CliMA/ClimaOcean.jl/blob/main/examples/global_climate_simulation.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Global-climate-simulation"><a class="docs-heading-anchor" href="#Global-climate-simulation">Global climate simulation</a><a id="Global-climate-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Global-climate-simulation" title="Permalink"></a></h1><p>This example configures a global ocean–sea ice simulation at 1.5ᵒ horizontal resolution with realistic bathymetry and a few closures including the &quot;Gent-McWilliams&quot; <code>IsopycnalSkewSymmetricDiffusivity</code>. The atmosphere is represented by a 4-layer <a href="https://github.com/SpeedyWeather/SpeedyWeather.jl">SpeedyWeather</a> simulation on the T63 spectral grid (this grid has approximately 1.875ᵒ resolution).</p><p>The atmosphere is initialized with the <a href="../../references/#jablonowski2006baroclinic">Jablonowski and Williamson (2006)</a> initial conditions, which consist of a zonal wind centered at mid-latitudes and higher altitudes and a temperature profile that is baroclinically unstable. The surface pressure is adjusted by orography for approximately globally constant mean-sea level pressure. The initial specific humidity is calculated from temperature for a constant relative humidity everywhere. The ocean and sea ice are initialized by ocean temperature, salinity, sea ice concentration, and sea ice thickness from the ECCO state estimate.</p><p>For this example, we need <code>Oceananigans.HydrostaticFreeSurfaceModel</code> (the ocean), <code>ClimaSeaIce.SeaIceModel</code> (the sea ice) and <code>SpeedyWeather.PrimitiveWetModel</code> (the atmosphere). All these are coupled and orchestrated by the <code>ClimaOcean.OceanSeaIceModel</code> (the coupled system).</p><p>The XESMF.jl package is used to regrid fields between the atmosphere and ocean–sea ice components.</p><pre><code class="language-julia hljs">using Oceananigans, SpeedyWeather, XESMF, ClimaOcean
+using NCDatasets, CairoMakie
+using Oceananigans.Units
+using Printf, Statistics, Dates</code></pre><h2 id="Ocean-and-sea-ice-model-configuration"><a class="docs-heading-anchor" href="#Ocean-and-sea-ice-model-configuration">Ocean and sea-ice model configuration</a><a id="Ocean-and-sea-ice-model-configuration-1"></a><a class="docs-heading-anchor-permalink" href="#Ocean-and-sea-ice-model-configuration" title="Permalink"></a></h2><p>The ocean and sea-ice are a simplified versions of the <a href="../one_degree_simulation/#one-degree-ocean-seaice">one-degree ocean-sea ice example</a>.</p><p>The first step is to create the grid with realistic bathymetry.</p><pre><code class="language-julia hljs">Nx = 240
+Ny = 120
+Nz = 10
+z = ExponentialDiscretization(Nz, -2000, 0)
+grid = TripolarGrid(Oceananigans.CPU(); size=(Nx, Ny, Nz), z, halo=(6, 6, 5))</code></pre><p>We regrid the bathymetry.</p><pre><code class="language-julia hljs">bottom_height = regrid_bathymetry(grid; major_basins=1, interpolation_passes=15)
+grid = ImmersedBoundaryGrid(grid, GridFittedBottom(bottom_height); active_cells_map=true)</code></pre><pre><code class="nohighlight hljs">[ Info: Interpolation passes of bathymetry size (21600, 10800, 1) onto a Oceananigans.Grids.OrthogonalSphericalShellGrid target grid of size (240, 120, 10):
+[ Info:     pass 1 to size (20176, 10088, 1)
+[ Info:     pass 2 to size (18752, 9376, 1)
+[ Info:     pass 3 to size (17328, 8664, 1)
+[ Info:     pass 4 to size (15904, 7952, 1)
+[ Info:     pass 5 to size (14480, 7240, 1)
+[ Info:     pass 6 to size (13056, 6528, 1)
+[ Info:     pass 7 to size (11632, 5816, 1)
+[ Info:     pass 8 to size (10208, 5104, 1)
+[ Info:     pass 9 to size (8784, 4392, 1)
+[ Info:     pass 10 to size (7360, 3680, 1)
+[ Info:     pass 11 to size (5936, 2968, 1)
+[ Info:     pass 12 to size (4512, 2256, 1)
+[ Info:     pass 13 to size (3088, 1544, 1)
+[ Info:     pass 14 to size (1664, 832, 1)
+[ Info:     pass 15 to size (240, 120, 1)
+</code></pre><p>Now we can specify the numerical details and the closures for the ocean simulation.</p><pre><code class="language-julia hljs">momentum_advection   = VectorInvariant()
+tracer_advection     = WENO(order=5)
+free_surface         = SplitExplicitFreeSurface(grid; substeps=40)
+catke_closure        = ClimaOcean.Oceans.default_ocean_closure()
+eddy_closure         = Oceananigans.TurbulenceClosures.IsopycnalSkewSymmetricDiffusivity(κ_skew=1e3, κ_symmetric=1e3)
+viscous_closure      = Oceananigans.TurbulenceClosures.HorizontalScalarBiharmonicDiffusivity(ν=1e12)
+closures             = (catke_closure, eddy_closure, viscous_closure)</code></pre><p>The ocean simulation, complete with initial conditions for temperature and salinity from ECCO.</p><pre><code class="language-julia hljs">ocean = ocean_simulation(grid;
+                         momentum_advection,
+                         tracer_advection,
+                         free_surface,
+                         closure = closures)
+
+Oceananigans.set!(ocean.model, T=Metadatum(:temperature, dataset=ECCO4Monthly()),
+                               S=Metadatum(:salinity,    dataset=ECCO4Monthly()))</code></pre><pre><code class="nohighlight hljs">┌ Warning: Split barotropic-baroclinic time stepping with SplitRungeKutta3TimeStepper is experimental.
+│ Use at own risk, and report any issues encountered at https://github.com/CliMA/Oceananigans.jl/issues.
+└ @ Oceananigans.TimeSteppers /storage5/buildkite-agent/.julia-5427/packages/Oceananigans/HDYmM/src/TimeSteppers/split_hydrostatic_runge_kutta_3.jl:59
+</code></pre><p>The sea-ice simulation, complete with initial conditions for sea-ice thickness and sea-ice concentration from ECCO.</p><pre><code class="language-julia hljs">sea_ice = sea_ice_simulation(grid, ocean; advection=WENO(order=5))
+
+Oceananigans.set!(sea_ice.model, h=Metadatum(:sea_ice_thickness, dataset=ECCO4Monthly()),
+                                 ℵ=Metadatum(:sea_ice_concentration, dataset=ECCO4Monthly()))</code></pre><pre><code class="nohighlight hljs">[ Info: Downloading ECCO data: sea_ice_thickness in /storage5/buildkite-agent/.julia-5427/scratchspaces/0376089a-ecfe-4b0e-a64f-9c555d74d754/ECCO/v4...
+[ Info: Downloading ECCO data: sea_ice_concentration in /storage5/buildkite-agent/.julia-5427/scratchspaces/0376089a-ecfe-4b0e-a64f-9c555d74d754/ECCO/v4...
+</code></pre><h2 id="Atmosphere-model-configuration"><a class="docs-heading-anchor" href="#Atmosphere-model-configuration">Atmosphere model configuration</a><a id="Atmosphere-model-configuration-1"></a><a class="docs-heading-anchor-permalink" href="#Atmosphere-model-configuration" title="Permalink"></a></h2><p>The atmosphere is provided by SpeedyWeather.jl. Here, we configure a T63L4 model with a 3-hour output interval. The <code>atmosphere_simulation</code> function takes care of building an atmosphere model with appropriate hooks so that ClimaOcean can compute inter-component fluxes.</p><pre><code class="language-julia hljs">nlayers = 4
+spectral_grid = SpeedyWeather.SpectralGrid(; trunc=63, nlayers, Grid=FullClenshawGrid)
+atmosphere = atmosphere_simulation(spectral_grid, output=true)</code></pre><pre><code class="nohighlight hljs">Simulation{SpeedyWeather.PrimitiveWetModel}
+├ prognostic_variables::PrognosticVariables{...}
+├ diagnostic_variables::DiagnosticVariables{...}
+└ model::SpeedyWeather.PrimitiveWetModel{...}</code></pre><p>The atmosphere model already includes some initial conditions as described above:</p><pre><code class="language-julia hljs">atmosphere.model.initial_conditions</code></pre><pre><code class="nohighlight hljs">SpeedyWeather.InitialConditions{SpeedyWeather.ZonalWind, SpeedyWeather.PressureOnOrography, SpeedyWeather.JablonowskiTemperature, SpeedyWeather.ConstantRelativeHumidity} &lt;: SpeedyWeather.AbstractInitialConditions
+├ vordiv::SpeedyWeather.ZonalWind = SpeedyWeather.ZonalWind &lt;: SpeedyWeather.AbstractInitialConditions
+├ η₀::Float64 = 0.252
+├ u₀::Float64 = 35.0
+├ perturb_lat::Float64 = 40.0
+├ perturb_lon::Float64 = 20.0
+├ perturb_uₚ::Float64 = 1.0
+└ perturb_radius::Float64 = 0.1
+├ pres::SpeedyWeather.PressureOnOrography = SpeedyWeather.PressureOnOrography &lt;: SpeedyWeather.AbstractInitialConditions
+
+├ temp::SpeedyWeather.JablonowskiTemperature = SpeedyWeather.JablonowskiTemperature &lt;: SpeedyWeather.AbstractInitialConditions
+├ η₀::Float64 = 0.252
+├ σ_tropopause::Float64 = 0.2
+├ u₀::Float64 = 35.0
+├ ΔT::Float64 = 0.0
+└ Tmin::Float64 = 200.0
+└ humid::SpeedyWeather.ConstantRelativeHumidity = SpeedyWeather.ConstantRelativeHumidity &lt;: SpeedyWeather.AbstractInitialConditions
+└ relhumid_ref::Float64 = 0.7</code></pre><p>We use a three hour time-step:</p><pre><code class="language-julia hljs">atmosphere.model.output.output_dt = Hour(3)</code></pre><h2 id="The-coupled-model"><a class="docs-heading-anchor" href="#The-coupled-model">The coupled model</a><a id="The-coupled-model-1"></a><a class="docs-heading-anchor-permalink" href="#The-coupled-model" title="Permalink"></a></h2><p>We are now ready to blend everything together. We need to specify the time step for the coupled model. We decide to step the global model every 2 atmosphere time steps (i.e., the ocean and the sea-ice are stepped every two atmosphere time steps).</p><pre><code class="language-julia hljs">Δt = 2 * convert(eltype(grid), atmosphere.model.time_stepping.Δt_sec)</code></pre><p>We build the complete coupled <code>earth_model</code> and the coupled simulation. Since radiation is idealized in this example, we set the emissivities to zero.</p><pre><code class="language-julia hljs">radiation = Radiation(ocean_emissivity=0.0, sea_ice_emissivity=0.0)
+earth_model = OceanSeaIceModel(ocean, sea_ice; atmosphere, radiation)</code></pre><pre><code class="nohighlight hljs">OceanSeaIceModel{CPU}(time = 0 seconds, iteration = 0)
+├── ocean: HydrostaticFreeSurfaceModel{CPU, ImmersedBoundaryGrid}(time = 0 seconds, iteration = 0)
+├── atmosphere: SpeedyWeather.Simulation
+├── sea_ice: SeaIceModel
+└── interfaces: ComponentInterfaces</code></pre><h2 id="Building-and-running-the-simulation"><a class="docs-heading-anchor" href="#Building-and-running-the-simulation">Building and running the simulation</a><a id="Building-and-running-the-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Building-and-running-the-simulation" title="Permalink"></a></h2><p>We are ready to build and run the coupled simulation. But before we do, we add callbacks to write outputs to disk every 3 hours.</p><pre><code class="language-julia hljs">earth = Oceananigans.Simulation(earth_model; Δt, stop_time=30days)
+outputs = merge(ocean.model.velocities, ocean.model.tracers)
+sea_ice_fields = merge(sea_ice.model.velocities, sea_ice.model.dynamics.auxiliaries.fields,
+                       (; h=sea_ice.model.ice_thickness, ℵ=sea_ice.model.ice_concentration))
+
+ocean.output_writers[:free_surf] = JLD2Writer(ocean.model, (; η=ocean.model.free_surface.η);
+                                              overwrite_existing=true,
+                                              schedule=TimeInterval(3hours),
+                                              filename=&quot;ocean_free_surface.jld2&quot;)
+
+ocean.output_writers[:surface] = JLD2Writer(ocean.model, outputs;
+                                            overwrite_existing=true,
+                                            schedule=TimeInterval(3hours),
+                                            filename=&quot;ocean_surface_fields.jld2&quot;,
+                                            indices=(:, :, grid.Nz))
+
+sea_ice.output_writers[:fields] = JLD2Writer(sea_ice.model, sea_ice_fields;
+                                             overwrite_existing=true,
+                                             schedule=TimeInterval(3hours),
+                                             filename=&quot;sea_ice_fields.jld2&quot;)
+
+Qcao = earth.model.interfaces.atmosphere_ocean_interface.fluxes.sensible_heat
+Qvao = earth.model.interfaces.atmosphere_ocean_interface.fluxes.latent_heat
+τxao = earth.model.interfaces.atmosphere_ocean_interface.fluxes.x_momentum
+τyao = earth.model.interfaces.atmosphere_ocean_interface.fluxes.y_momentum
+Qcai = earth.model.interfaces.atmosphere_sea_ice_interface.fluxes.sensible_heat
+Qvai = earth.model.interfaces.atmosphere_sea_ice_interface.fluxes.latent_heat
+τxai = earth.model.interfaces.atmosphere_sea_ice_interface.fluxes.x_momentum
+τyai = earth.model.interfaces.atmosphere_sea_ice_interface.fluxes.y_momentum
+Qoi  = earth.model.interfaces.net_fluxes.sea_ice.bottom.heat
+Soi  = earth.model.interfaces.sea_ice_ocean_interface.fluxes.salt
+fluxes = (; Qcao, Qvao, τxao, τyao, Qcai, Qvai, τxai, τyai, Qoi, Soi)
+
+earth.output_writers[:fluxes] = JLD2Writer(earth.model.ocean.model, fluxes;
+                                           overwrite_existing=true,
+                                           schedule=TimeInterval(3hours),
+                                           filename=&quot;intercomponent_fluxes.jld2&quot;)</code></pre><pre><code class="nohighlight hljs">JLD2Writer scheduled on TimeInterval(3 hours):
+├── filepath: intercomponent_fluxes.jld2
+├── 10 outputs: (Qcao, Qvao, τxao, τyao, Qcai, Qvai, τxai, τyai, Qoi, Soi)
+├── array_type: Array{Float32}
+├── including: [:grid, :coriolis, :buoyancy, :closure]
+├── file_splitting: NoFileSplitting
+└── file size: 10.8 MiB</code></pre><p>We also add a callback function that prints out a helpful progress message while the simulation runs.</p><pre><code class="language-julia hljs">wall_time = Ref(time_ns())
+
+function progress(sim)
+    atmos = sim.model.atmosphere
+    ocean = sim.model.ocean
+
+    ua, va     = atmos.diagnostic_variables.dynamics.u_mean_grid, atmos.diagnostic_variables.dynamics.v_mean_grid
+    uo, vo, wo = ocean.model.velocities
+
+    uamax = (maximum(abs, ua), maximum(abs, va))
+    uomax = (maximum(abs, uo), maximum(abs, vo), maximum(abs, wo))
+
+    step_time = 1e-9 * (time_ns() - wall_time[])
+
+    msg1 = @sprintf(&quot;time: %s, iter: %d&quot;, prettytime(sim), iteration(sim))
+    msg2 = @sprintf(&quot;, max|ua|: (%.1e, %.1e) m s⁻¹&quot;, uamax...)
+    msg3 = @sprintf(&quot;, max|uo|: (%.1e, %.1e, %.1e) m s⁻¹&quot;, uomax...)
+    msg4 = @sprintf(&quot;, wall time: %s \n&quot;, prettytime(step_time))
+
+    @info msg1 * msg2 * msg3 * msg4
+
+    wall_time[] = time_ns()
+
+     return nothing
+end
+
+add_callback!(earth, progress, TimeInterval(2days))</code></pre><p>Let&#39;s run the coupled model!</p><pre><code class="language-julia hljs">Oceananigans.run!(earth)</code></pre><pre><code class="nohighlight hljs">[ Info: Initializing simulation...
+[ Info: time: 0 seconds, iter: 0, max|ua|: (0.0e+00, 0.0e+00) m s⁻¹, max|uo|: (0.0e+00, 0.0e+00, 0.0e+00) m s⁻¹, wall time: 17.750 seconds 
+[ Info:     ... simulation initialization complete (31.552 seconds)
+[ Info: Executing initial time step...
+[ Info:     ... initial time step complete (12.654 minutes).
+[ Info: time: 2 days, iter: 80, max|ua|: (3.1e+01, 1.1e+01) m s⁻¹, max|uo|: (1.0e+00, 8.4e-01, 3.8e-03) m s⁻¹, wall time: 16.124 minutes 
+[ Info: time: 4 days, iter: 160, max|ua|: (3.8e+01, 1.5e+01) m s⁻¹, max|uo|: (7.8e-01, 1.1e+00, 5.6e-03) m s⁻¹, wall time: 2.442 minutes 
+[ Info: time: 6 days, iter: 240, max|ua|: (3.5e+01, 1.8e+01) m s⁻¹, max|uo|: (9.0e-01, 1.1e+00, 6.5e-03) m s⁻¹, wall time: 2.370 minutes 
+[ Info: time: 8 days, iter: 320, max|ua|: (3.3e+01, 1.6e+01) m s⁻¹, max|uo|: (1.0e+00, 8.9e-01, 5.4e-03) m s⁻¹, wall time: 2.333 minutes 
+[ Info: time: 10 days, iter: 400, max|ua|: (3.8e+01, 1.8e+01) m s⁻¹, max|uo|: (1.2e+00, 1.6e+00, 5.6e-03) m s⁻¹, wall time: 2.354 minutes 
+[ Info: time: 12 days, iter: 480, max|ua|: (3.6e+01, 2.2e+01) m s⁻¹, max|uo|: (1.4e+00, 1.7e+00, 4.3e-03) m s⁻¹, wall time: 2.337 minutes 
+[ Info: time: 14 days, iter: 560, max|ua|: (3.7e+01, 2.0e+01) m s⁻¹, max|uo|: (1.5e+00, 1.4e+00, 4.1e-03) m s⁻¹, wall time: 2.375 minutes 
+[ Info: time: 16 days, iter: 640, max|ua|: (3.8e+01, 2.2e+01) m s⁻¹, max|uo|: (2.0e+00, 1.3e+00, 3.9e-03) m s⁻¹, wall time: 2.546 minutes 
+[ Info: time: 18 days, iter: 720, max|ua|: (3.7e+01, 1.9e+01) m s⁻¹, max|uo|: (2.0e+00, 1.4e+00, 4.0e-03) m s⁻¹, wall time: 2.409 minutes 
+[ Info: time: 20 days, iter: 800, max|ua|: (4.2e+01, 2.5e+01) m s⁻¹, max|uo|: (2.1e+00, 1.5e+00, 3.7e-03) m s⁻¹, wall time: 2.401 minutes 
+[ Info: time: 22 days, iter: 880, max|ua|: (4.6e+01, 2.3e+01) m s⁻¹, max|uo|: (2.2e+00, 2.4e+00, 3.8e-03) m s⁻¹, wall time: 2.394 minutes 
+[ Info: time: 24 days, iter: 960, max|ua|: (4.4e+01, 2.3e+01) m s⁻¹, max|uo|: (2.0e+00, 2.8e+00, 3.3e-03) m s⁻¹, wall time: 2.346 minutes 
+[ Info: time: 26 days, iter: 1040, max|ua|: (4.5e+01, 2.1e+01) m s⁻¹, max|uo|: (2.0e+00, 2.7e+00, 2.9e-03) m s⁻¹, wall time: 2.352 minutes 
+[ Info: time: 28 days, iter: 1120, max|ua|: (4.6e+01, 2.2e+01) m s⁻¹, max|uo|: (2.1e+00, 1.9e+00, 3.3e-03) m s⁻¹, wall time: 2.331 minutes 
+[ Info: Simulation is stopping after running for 49.519 minutes.
+[ Info: Simulation time 30 days equals or exceeds stop time 30 days.
+[ Info: time: 30 days, iter: 1200, max|ua|: (4.4e+01, 2.0e+01) m s⁻¹, max|uo|: (2.0e+00, 1.4e+00, 3.9e-03) m s⁻¹, wall time: 2.297 minutes 
+</code></pre><h2 id="Visualizing-the-results"><a class="docs-heading-anchor" href="#Visualizing-the-results">Visualizing the results</a><a id="Visualizing-the-results-1"></a><a class="docs-heading-anchor-permalink" href="#Visualizing-the-results" title="Permalink"></a></h2><p>We can visualize some of the results. Here, we plot the surface speeds in the atmosphere, ocean, and sea-ice as well as the 2-meter temperature in the atmosphere, the sea surface temperature, and the sensible and latent heat fluxes at the atmosphere-ocean interface. SpeedyWeather outputs are stored in a NetCDF file located in the <code>run_0001</code> folder, while ocean and sea-ice outputs are stored in JLD2 files that can be read by Oceananigans.jl using the <code>FieldTimeSeries</code> type.</p><pre><code class="language-julia hljs">SWO = Dataset(&quot;run_0001/output.nc&quot;)
+
+Ta = reverse(SWO[&quot;temp&quot;][:, :, nlayers, :], dims=2)
+ua = reverse(SWO[&quot;u&quot;][:, :, nlayers, :],    dims=2)
+va = reverse(SWO[&quot;v&quot;][:, :, nlayers, :],    dims=2)
+sp = sqrt.(ua.^2 + va.^2)
+
+SST = FieldTimeSeries(&quot;ocean_surface_fields.jld2&quot;, &quot;T&quot;)
+SSU = FieldTimeSeries(&quot;ocean_surface_fields.jld2&quot;, &quot;u&quot;)
+SSV = FieldTimeSeries(&quot;ocean_surface_fields.jld2&quot;, &quot;v&quot;)
+
+SIU = FieldTimeSeries(&quot;sea_ice_fields.jld2&quot;, &quot;u&quot;)
+SIV = FieldTimeSeries(&quot;sea_ice_fields.jld2&quot;, &quot;v&quot;)
+SIA = FieldTimeSeries(&quot;sea_ice_fields.jld2&quot;, &quot;ℵ&quot;)
+
+Qcao = FieldTimeSeries(&quot;intercomponent_fluxes.jld2&quot;, &quot;Qcao&quot;)
+Qvao = FieldTimeSeries(&quot;intercomponent_fluxes.jld2&quot;, &quot;Qvao&quot;)
+
+Nt = min(length(sp[1, 1, :]), length(Qcao))
+times = Qcao.times
+
+uotmp = Oceananigans.Field{Face, Center, Nothing}(SST.grid)
+votmp = Oceananigans.Field{Center, Face, Nothing}(SST.grid)
+
+uitmp = Oceananigans.Field{Face,   Center, Nothing}(SST.grid)
+vitmp = Oceananigans.Field{Center, Face,   Nothing}(SST.grid)
+atmp  = Oceananigans.Field{Center, Center, Nothing}(SST.grid)
+
+sotmp = Oceananigans.Field(sqrt(uotmp^2 + votmp^2))
+sitmp = Oceananigans.Field(sqrt(uitmp^2 + vitmp^2) * atmp)
+
+iter = Observable(1)
+
+san = @lift sp[:, :, $iter]
+son  = @lift begin
+    Oceananigans.set!(uotmp, SSU[$iter])
+    Oceananigans.set!(votmp, SSV[$iter])
+    Oceananigans.compute!(sotmp)
+    Oceananigans.interior(sotmp, :, :, 1)
+end
+ssn  = @lift begin
+    Oceananigans.set!(uitmp, SIU[$iter])
+    Oceananigans.set!(vitmp, SIV[$iter])
+    Oceananigans.set!(atmp,  SIA[$iter])
+    Oceananigans.compute!(sitmp)
+    Oceananigans.interior(sitmp, :, :, 1)
+end
+
+fig = Figure(size = (1000, 1500))
+
+ax1 = Axis(fig[1, 1], title = &quot;Surface speed, atmosphere&quot;)
+ax2 = Axis(fig[2, 1], title = &quot;Surface speed, ocean&quot;)
+ax3 = Axis(fig[3, 1], title = &quot;Surface speed, sea-ice&quot;)
+
+hm1 = heatmap!(ax1, san; colormap = :deep,  nan_color=:lightgray, colorrange = (0, 35))
+hm2 = heatmap!(ax2, son; colormap = :magma, nan_color=:lightgray, colorrange = (0, 0.6))
+hm3 = heatmap!(ax3, ssn; colormap = :ice,   nan_color=:lightgray, colorrange = (0, 0.6))
+
+Colorbar(fig[1, 2], hm1, label=&quot;(m s⁻¹)&quot;)
+Colorbar(fig[2, 2], hm2, label=&quot;(m s⁻¹)&quot;)
+Colorbar(fig[3, 2], hm3, label=&quot;(m s⁻¹)&quot;)
+
+for ax in (ax1, ax2, ax3)
+    hidedecorations!(ax)
+end
+
+title = @lift string(prettytime(times[$iter] - times[1]))
+Label(fig[0, :], title, fontsize=18)
+
+record(fig, &quot;surface_speeds.mp4&quot;, 1:Nt, framerate=8) do i
+    iter[] = i
+end</code></pre><p><video src="../surface_speeds.mp4" controls="true" title><a href="../surface_speeds.mp4"></a></video></p><pre><code class="language-julia hljs">Tan = @lift Ta[:, :, $iter]
+Ton = @lift interior(SST[$iter], :, :, 1)
+Qcn = @lift interior(Qcao[$iter], :, :, 1)
+Qvn = @lift interior(Qvao[$iter], :, :, 1)
+
+fig = Figure(size = (1000, 2000))
+
+ax1 = Axis(fig[1, 1], title = &quot;2m Temperature, atmosphere&quot;)
+ax2 = Axis(fig[2, 1], title = &quot;Sea Surface Temperature&quot;)
+ax3 = Axis(fig[3, 1], title = &quot;Sensible heat flux&quot;)
+ax4 = Axis(fig[4, 1], title = &quot;Latent heat flux&quot;)
+
+hm1 = heatmap!(ax1, Tan; colormap = :plasma, nan_color=:lightgray, colorrange = (-45, 30))
+hm2 = heatmap!(ax2, Ton; colormap = :plasma, nan_color=:lightgray, colorrange = (-2, 32))
+hm3 = heatmap!(ax3, Qcn; colormap = :balance, colorrange = (-200, 200),  nan_color=:lightgray)
+hm4 = heatmap!(ax4, Qvn; colormap = :balance, colorrange = (-200, 200),  nan_color=:lightgray)
+
+Colorbar(fig[1, 2], hm1, label=&quot;(ᵒC)&quot;)
+Colorbar(fig[2, 2], hm2, label=&quot;(ᵒC)&quot;)
+Colorbar(fig[3, 2], hm3, label=&quot;(W/m²)&quot;)
+Colorbar(fig[4, 2], hm4, label=&quot;(W/m²)&quot;)
+
+for ax in (ax1, ax2, ax3, ax4)
+    hidedecorations!(ax)
+end
+
+title = @lift string(prettytime(times[$iter] - times[1]))
+Label(fig[0, :], title, fontsize=18)
+
+record(fig, &quot;surface_temperature_and_heat_flux.mp4&quot;, 1:Nt, framerate=8) do i
+    iter[] = i
+end</code></pre><p><video src="../surface_temperature_and_heat_flux.mp4" controls="true" title><a href="../surface_temperature_and_heat_flux.mp4"></a></video></p><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../near_global_ocean_simulation/">« Near-global ocean simulation</a><a class="docs-footer-nextpage" href="../slab_ocean/">OceanSeaIceModel interface »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.1 on <span class="colophon-date" title="Wednesday 21 January 2026 15:59">Wednesday 21 January 2026</span>. Using Julia version 1.12.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
